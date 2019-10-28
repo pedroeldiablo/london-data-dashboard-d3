@@ -148,6 +148,32 @@ d3.json('./london-topojson1.json', function(error, mapData) {
     .append('path')
     .classed('country', true)
     .style('fill', 'black')
-    .attr('d', path);
+    .attr('d', path)
+        .on('mousemove', showToolTip)
+      .on('touchStart', showToolTip)
+      .on('mouseout', hideToolTip)
+      .on('touchEnd', hideToolTip);
         
 });
+
+var tooltip = d3.select('body')
+  .append('div')
+  .classed('tooltip', true);
+
+function showToolTip(d) {
+    console.log(d);
+  var properties = d.properties;
+  tooltip
+    .style('opacity', 1)
+    .style('left', d3.event.x - (tooltip.node().offsetWidth /2) + 'px')
+    .style('top', d3.event.y + 25 + 'px')
+    .html(`
+        <p>${d.id}</p>
+      `);  
+}
+  
+function hideToolTip() {
+  tooltip
+    .style('opacity', 0);
+}
+
