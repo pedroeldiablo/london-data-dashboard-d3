@@ -40,3 +40,8 @@ path {
     left: 50%;
     margin-left: -16px;
   }
+
+  .station {
+    pointer-events: none;
+
+  }

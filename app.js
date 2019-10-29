@@ -84,27 +84,28 @@
 
 
 d3.queue()
-.defer(d3.json, './uk_topo_ward.json')
-// .defer(d3.json, './london_ward_lat_lng.json')
+  .defer(d3.json, './uk_topo_ward.json')
+  .defer(d3.json, './london_stations_topojson.json')
   .defer(d3.csv, './London-Data-Table-1.csv', function(row){
     // console.log(row);
     return {
       newCode: row['New code'],
       wardName: row['Ward name'],
-      population:  parseFloat(row['Population - 2015'].replace(/,/g, '')),
+      population: parseFloat(row['Population - 2015'].replace(/,/g, '')),
       area: row['Area - Square Kilometres'],
       openSpace: parseFloat(row['% area that is open space - 2014']),
-      density:  parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, '')),
+      density: parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, '')),
       availableArea: (row['Area - Square Kilometres'] * (100 - row['% area that is open space - 2014']))/ 100,
-      trueDensity:  Math.round(parseFloat(row['Population - 2015'].replace(/,/g, '')) / ((row['Area - Square Kilometres'] * (100 - row['% area that is open space - 2014']))/ 100), 2),
+      trueDensity: Math.round(parseFloat(row['Population - 2015'].replace(/,/g, '')) / ((row['Area - Square Kilometres'] * (100 - row['% area that is open space - 2014']))/ 100), 2)
     };
   })
-  .await(function(error, mapData, wardData){
+  .await(function(error, mapData, stationsData, wardData){
     if(error) throw error;
 
     // console.log(mapData);
 
     var geoData = topojson.feature(mapData, mapData.objects.wards).features;
+    var stationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
 
     wardData.forEach(row => {
       var countries = geoData.filter(d => d.id === row.newCode);
@@ -120,8 +121,10 @@ d3.queue()
 
     var path = d3.geoPath()
       .projection(projection);
+    
+    var path2 = d3.geoPath();
 
-    d3.select('svg')
+    d3.select('#map')
       .attr('width', width)
       .attr('height', height)
       .selectAll('.country')
@@ -131,32 +134,47 @@ d3.queue()
       .classed('country', true)
       .attr('d', path)
       // .style('fill', 'transparent')
-    .on('mousemove', showToolTip)
-    .on('touchStart', showToolTip)
-    .on('mouseout', hideToolTip)
-    .on('touchEnd', hideToolTip);
+      .on('mousemove', showToolTip)
+      .on('touchStart', showToolTip)
+      .on('mouseout', hideToolTip)
+      .on('touchEnd', hideToolTip);
 
-      var select = d3.select('select');
+    d3.select('#map')
+      .attr('width', width)
+      .attr('height', height)
+      .selectAll('.station')
+      .data(stationsGeoData)
+      .enter()
+      .append('path')
+      .classed('station', true)
+      .attr('d', path)
+      .style('fill', 'red')
+      .on('mousemove', showToolTip)
+      .on('touchStart', showToolTip)
+      .on('mouseout', hideToolTip)
+      .on('touchEnd', hideToolTip);
 
-      select
-        .on('change', d => setColor(d3.event.target.value));
+    var select = d3.select('select');
 
-      setColor(select.property('value'));
+    select
+      .on('change', d => setColor(d3.event.target.value));
+
+    setColor(select.property('value'));
 
 
-      function setColor(val) {
-        var colorRanges = {
-          population: ['pink', 'mediumseagreen'],
-          density: ['pink', 'mediumseagreen'],
-          openSpace: ['pink', 'mediumseagreen'],
-          trueDensity: ['pink', 'mediumseagreen']
-        };
+    function setColor(val) {
+      var colorRanges = {
+        population: ['pink', 'mediumseagreen'],
+        density: ['pink', 'mediumseagreen'],
+        openSpace: ['pink', 'mediumseagreen'],
+        trueDensity: ['pink', 'mediumseagreen']
+      };
 
-        console.log(d3.max(wardData, d =>  d[val]));
+      console.log(d3.max(wardData, d =>  d[val]));
 
-        var scale = d3.scaleLinear()
-          .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
-          .range(colorRanges[val]);
+      var scale = d3.scaleLinear()
+        .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
+        .range(colorRanges[val]);
 
       d3.selectAll('.country')
         .transition()
