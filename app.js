@@ -111,6 +111,32 @@ d3.queue()
       var countries = geoData.filter(d => d.id === row.newCode);
       countries.forEach(country => country.properties = row);
     });
+
+    var trainlines = {};
+
+  
+    stationsGeoData.forEach(station => {
+      var id = station.properties.id;
+      var lines = station.properties.lines;
+      console.log(lines, id);
+      lines.forEach(line => {
+        // console.log(line);
+        var lineName = line.name; 
+        if(trainlines[`${lineName}`]){
+          trainlines[`${lineName}`].push(id);
+
+        } else {
+          trainlines[`${lineName}`] = [];
+          trainlines[`${lineName}`].push(id);
+        }
+      });
+        
+        
+    });
+
+    console.log(trainlines);
+
+
     var width = 800;
     var height = 600;
 
