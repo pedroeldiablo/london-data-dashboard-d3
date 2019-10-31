@@ -40,15 +40,17 @@
 // % children in year 6 who are obese- 2011/12 to 2013/14,
 // "Rate of All Ambulance Incidents per 1,000 population - 2014",
 // Rates of ambulance call outs for alcohol related illness - 2014,
-// Number Killed or Seriously Injured on the roads - 2014,I
-// n employment (16-64) - 2011,Employment rate (16-64) - 2011,
+// Number Killed or Seriously Injured on the roads - 2014,
+// In employment (16-64) - 2011,
+// Employment rate (16-64) - 2011,
 // Number of jobs in area - 2013,
 // Employment per head of resident WA population - 2013,
 // Rate of new registrations of migrant workers - 2011/12,
 // Median House Price (£) - 2014,
 // Number of properties sold - 2014,
 // Median Household income estimate (2012/13),
-// Number of Household spaces - 2011,% detached houses - 2011,
+// Number of Household spaces - 2011,
+// % detached houses - 2011,
 // % semi-detached houses - 2011,
 // % terraced houses - 2011,
 // "% Flat, maisonette or apartment - 2011",
@@ -87,16 +89,38 @@ d3.queue()
   .defer(d3.json, './uk_topo_ward.json')
   .defer(d3.json, './london_stations_topojson.json')
   .defer(d3.csv, './London-Data-Table-1.csv', function(row){
-    // console.log(row);
+    console.log(row);
+    var area = row['Area - Square Kilometres'];
+    var population = parseFloat(row['Population - 2015'].replace(/,/g, ''));
+    var openSpace = parseFloat(row['% area that is open space - 2014']);
+    var density = parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, ''));
+    var jobs = parseFloat(row['Number of jobs in area - 2013'].replace(/,/g, ''));
+    var availableArea = (area * (100 - openSpace))/ 100;
+    var trueDensity = Math.round(population/availableArea);
+    var hiddenDensity = (trueDensity - density) * availableArea;
+    var jobsDensity = jobs / availableArea;
+    var workingAgePopulation = parseFloat(row['Working-age (16-64) - 2015'].replace(/,/g, ''));
+    var publicTransport = row['Average Public Transport Accessibility score - 2014'];
+
     return {
       newCode: row['New code'],
       wardName: row['Ward name'],
-      population: parseFloat(row['Population - 2015'].replace(/,/g, '')),
+      population: population,
       area: row['Area - Square Kilometres'],
-      openSpace: parseFloat(row['% area that is open space - 2014']),
-      density: parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, '')),
-      availableArea: (row['Area - Square Kilometres'] * (100 - row['% area that is open space - 2014']))/ 100,
-      trueDensity: Math.round(parseFloat(row['Population - 2015'].replace(/,/g, '')) / ((row['Area - Square Kilometres'] * (100 - row['% area that is open space - 2014']))/ 100), 2)
+      openSpace: openSpace,
+      density: density,
+      availableArea: availableArea,
+      trueDensity: trueDensity,
+      hiddenDensity: hiddenDensity,
+      jobs: jobs,
+      jobsDensity: jobsDensity,
+      netEmployment:  jobs - workingAgePopulation,
+      workingAge: workingAgePopulation,
+      publicTransport: publicTransport,
+      transportPopulationRating: publicTransport * population,
+      transportDensityRating: publicTransport * trueDensity,
+      transportJobs: jobs / publicTransport,
+      transportInvestmentImpact: publicTransport / (trueDensity * availableArea),
     };
   })
   .await(function(error, mapData, stationsData, wardData){
@@ -112,29 +136,66 @@ d3.queue()
       countries.forEach(country => country.properties = row);
     });
 
-    var trainlines = {};
-
+    var trainlines = [];
   
     stationsGeoData.forEach(station => {
+      // console.log(station);
       var id = station.properties.id;
       var lines = station.properties.lines;
-      console.log(lines, id);
+      var coordinates = station.geometry.coordinates;
+      // console.log(lines, id);
       lines.forEach(line => {
         // console.log(line);
         var lineName = line.name; 
         if(trainlines[`${lineName}`]){
-          trainlines[`${lineName}`].push(id);
+          trainlines[`${lineName}`].push({"geometry":{"coordinates": coordinates, type: "MultiPolygon"}, type: "Feature"});
 
         } else {
           trainlines[`${lineName}`] = [];
-          trainlines[`${lineName}`].push(id);
+          trainlines[`${lineName}`].push({"geometry":{"coordinates": coordinates, type: "MultiPolygon"}, type: "Feature"});
         }
       });
-        
-        
     });
 
-    console.log(trainlines);
+    console.log('stationsGeoData', stationsGeoData);
+    console.log('trainlines', trainlines);
+
+    console.log( trainlines);
+    console.log("hi");
+
+    console.log('length', trainlines, Object.keys(trainlines), trainlines.length);
+
+    var lineNames = Object.keys(trainlines);
+
+    lineNames.forEach(line => {
+      // return console.log('current', trainlines[line]);
+      linesGeoData = trainlines[line];
+      
+      d3.select('#map')
+        .attr('width', width)
+        .attr('height', height)
+        .selectAll('.line')
+        .data(linesGeoData)
+        .enter()
+        .append('path')
+        .classed('line', true)
+        .attr('d', path)
+        .style('fill', 'green')
+        .on('mousemove', showToolTip)
+        .on('touchStart', showToolTip)
+        .on('mouseout', hideToolTip)
+        .on('touchEnd', hideToolTip);
+        console.log(trainlines[line]);
+   
+    }
+    );
+      
+    console.log("hi");
+
+   
+
+    // console.log('stationsGeoData', stationsGeoData);
+    // console.log('linesGeoData', linesGeoData);
 
 
     var width = 800;
@@ -149,6 +210,8 @@ d3.queue()
       .projection(projection);
     
     var path2 = d3.geoPath();
+
+    console.log("geoData", geoData);
 
     d3.select('#map')
       .attr('width', width)
@@ -165,20 +228,20 @@ d3.queue()
       .on('mouseout', hideToolTip)
       .on('touchEnd', hideToolTip);
 
-    d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
-      .selectAll('.station')
-      .data(stationsGeoData)
-      .enter()
-      .append('path')
-      .classed('station', true)
-      .attr('d', path)
-      .style('fill', 'red')
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+    // d3.select('#map')
+    //   .attr('width', width)
+    //   .attr('height', height)
+    //   .selectAll('.station')
+    //   .data(stationsGeoData)
+    //   .enter()
+    //   .append('path')
+    //   .classed('station', true)
+    //   .attr('d', path)
+    //   .style('fill', 'red')
+    //   .on('mousemove', showToolTip)
+    //   .on('touchStart', showToolTip)
+    //   .on('mouseout', hideToolTip)
+    //   .on('touchEnd', hideToolTip);
 
     var select = d3.select('select');
 
@@ -193,10 +256,17 @@ d3.queue()
         population: ['pink', 'mediumseagreen'],
         density: ['pink', 'mediumseagreen'],
         openSpace: ['pink', 'mediumseagreen'],
-        trueDensity: ['pink', 'mediumseagreen']
+        trueDensity: ['pink', 'mediumseagreen'],
+        jobs: ['pink', 'mediumseagreen'],
+        netEmployment: ['pink', 'mediumseagreen'],
+        publicTransport: ['pink', 'mediumseagreen'], 
+        transportPopulationRating: ['pink', 'mediumseagreen'], 
+        transportDensityRating: ['pink', 'mediumseagreen'],
+        transportJobs:  ['pink', 'mediumseagreen'], 
+        transportInvestmentImpact: ['pink', 'mediumseagreen'],
+        jobsDensity: ['pink', 'mediumseagreen'],
+        hiddenDensity: ['pink', 'mediumseagreen'],
       };
-
-      console.log(d3.max(wardData, d =>  d[val]));
 
       var scale = d3.scaleLinear()
         .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
@@ -218,21 +288,30 @@ var tooltip = d3.select('body')
   .classed('tooltip', true);
 
 function showToolTip(d) {
-  //  console.log(d);
+   console.log(d);
   var properties = d.properties;
   tooltip
     .style('opacity', 1)
-    .style('left', d3.event.x - (tooltip.node().offsetWidth /2) + 'px')
-    .style('top', d3.event.y + 25 + 'px')
+    // .style('left', d3.event.x - (tooltip.node().offsetWidth /2) + 'px')
+    // .style('top', d3.event.y + 25 + 'px')
+
     .html(`
         <p>${properties.wardName}</p>
         <p>Population: ${properties.population}</p>
         <p>Area: ${properties.area} km2</p>
         <p>Open Space: ${properties.openSpace}%</p>
         <p>density: ${properties.density}</p>
+        <p>hiddenDensity: ${properties.hiddenDensity}</p>
         <p>openSpace: ${properties.openSpace}</p>
         <p>availableArea: ${properties.availableArea} km2</p>
         <p>trueDensity: ${properties.trueDensity} per/km2</p>
+        <p>jobs: ${properties.jobs}</p>
+         <p>jobsDensity: ${properties.jobsDensity}</p>
+        <p>Working age: ${properties.workingAge}</p>
+        <p>Net Employment: ${properties.netEmployment}</p>
+        <p>publicTransport: ${properties.publicTransport}</p>
+        <p>transportJobs: ${properties.transportJobs}</p>
+        <p>transportInvestmentImpact: ${properties.transportInvestmentImpact}</p>
       `);  
 }
   
