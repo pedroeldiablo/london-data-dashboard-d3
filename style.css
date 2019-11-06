@@ -74,18 +74,19 @@ path {
 
 .tooltip {
     opacity: 0;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     pointer-events: none;
     background-color: rgba(255,255,255,.9);
     border: .25px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
+    max-width: 25vw;
   }
   
   .tooltip:before {
     content: '';
-    position: absolute;
+    position: fixed;
     border: 16px solid transparent;
     border-bottom-color:  rgba(0, 0, 0, 0.1);
     top: -34px;
@@ -99,7 +100,7 @@ path {
   }
 
   .line {
-transform: translate(800px, -25200px);
+/* transform: translate(800px, -25200px); */
     stroke-width: 10px;
   }
 
