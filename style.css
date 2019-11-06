@@ -97,3 +97,12 @@ path {
     /* pointer-events: none; */
 
   }
+
+  .line {
+transform: translate(800px, -25200px);
+    stroke-width: 10px;
+  }
+
+  .eastLondon {
+    
+  }
