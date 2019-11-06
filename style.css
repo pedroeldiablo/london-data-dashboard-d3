@@ -102,8 +102,13 @@ path {
   .line {
 /* transform: translate(800px, -25200px); */
     stroke-width: 10px;
+    fill: transparent;
   }
 
   .eastLondon {
     
+  }
+
+  .country {
+    opacity: 0.5;
   }

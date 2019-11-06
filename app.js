@@ -396,18 +396,21 @@ d3.queue()
         
       // debugger;
 
+      var id = linesGeoData[0].id.replace(/[/ !@#$%^&*()]/g, '');
+
+      console.log(id);
+
       // return (
       d3.select('#map')
         .attr('width', width)
         .attr('height', height)
-        .selectAll('.line')
+        .selectAll(`.${id}`)
         .data(linesGeoData)
         .enter()
         .append('path')
         .classed('line', true)
-        .classed(linesGeoData[0].id, true)
+        .classed(id, true)
         .attr('d', path)
-        .style('fill', 'green')
         .on('mousemove', showToolTip)
         .on('touchStart', showToolTip)
         .on('mouseout', hideToolTip)
@@ -420,7 +423,7 @@ d3.queue()
     }
 
     lineRoutes.forEach(line => {
-      if (line === 'undefined' || line === 'Thameslink Routes' || trainRoute[line][0].geometry.coordinates[0].length < 2 || trainRoute[line][0].geometry.coordinates[0].length < 15) {
+      if (line === 'undefined' || trainRoute[line][0].geometry.coordinates[0].length < 2) {
         return console.log('unknownline');
       } else {
         // console.log('current', trainRoute[line]);
@@ -523,19 +526,19 @@ d3.queue()
 
     console.log('geoData', geoData);
 
-    // d3.select('#map')
-    //   .attr('width', width)
-    //   .attr('height', height)
-    //   .selectAll('.country')
-    //   .data(geoData)
-    //   .enter()
-    //   .append('path')
-    //   .classed('country', true)
-    //   .attr('d', path);
-    // .on('mousemove', showToolTip)
-    // .on('touchStart', showToolTip)
-    // .on('mouseout', hideToolTip)
-    // .on('touchEnd', hideToolTip);
+    d3.select('#map')
+      .attr('width', width)
+      .attr('height', height)
+      .selectAll('.country')
+      .data(geoData)
+      .enter()
+      .append('path')
+      .classed('country', true)
+      .attr('d', path)
+      .on('mousemove', showToolTip)
+      .on('touchStart', showToolTip)
+      .on('mouseout', hideToolTip)
+      .on('touchEnd', hideToolTip);
 
     d3.select('#map')
       .attr('width', width)
