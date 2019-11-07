@@ -281,7 +281,8 @@ d3.queue()
     //   });
     // });
 
-    var trainlines = [];
+    var tubeLines = [];
+    // console.log('stationsGeoData',stationsGeoData);
   
     stationsGeoData.forEach(station => {
       // console.log(station);
@@ -292,15 +293,19 @@ d3.queue()
       lines.forEach(line => {
         // console.log(line);
         var lineName = line.name; 
-        if(trainlines[`${lineName}`]){
-          trainlines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+        if(tubeLines[`${lineName}`]){
+          // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+          tubeLines[`${lineName}`][0]['geometry']['coordinates'][0].push(coordinates);
 
         } else {
-          trainlines[`${lineName}`] = [];
-          trainlines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+          tubeLines[`${lineName}`] = [];
+          // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+          tubeLines[`${lineName}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: lineName });
         }
       });
     });
+
+    console.log('tubeLines', tubeLines);
 
     // TODO filter routes or descriptions and link visually 
 
@@ -343,19 +348,19 @@ d3.queue()
     //   .on('touchEnd', hideToolTip);
 
 
-    console.log('trainRoute', trainRoute);
-    // console.log('trainlines', trainlines);
+    // console.log('trainRoute', trainRoute);
+    // console.log('tubeLines', tubeLines);
 
-    // console.log( trainlines);
+    // console.log( tubeLines);
     // console.log("hi");
 
-    // console.log('length', trainlines, Object.keys(trainlines), trainlines.length);
+    // console.log('length', tubeLines, Object.keys(tubeLines), tubeLines.length);
 
-    // var lineNames = Object.keys(trainlines);
+    // var lineNames = Object.keys(tubeLines);
 
     // lineNames.forEach(line => {
-    //   console.log('current', trainlines[line]);
-    //   var linesGeoData = trainlines[line];
+    //   console.log('current', tubeLines[line]);
+    //   var linesGeoData = tubeLines[line];
     //   console.log('linesGeoData', linesGeoData);
     //   return (
     //     d3.select('#map')
@@ -378,6 +383,7 @@ d3.queue()
       
 
     var lineRoutes = Object.keys(trainRoute);
+    var tubeRoutes = Object.keys(tubeLines);
 
     // console.log('lineRoutes', lineRoutes);
 
@@ -414,7 +420,36 @@ d3.queue()
         .on('mousemove', showToolTip)
         .on('touchStart', showToolTip)
         .on('mouseout', hideToolTip)
-        .on('touchEnd', hideToolTip);
+        .on('touchEnd', hideToolTip)
+        .attr('stroke', d => {
+          var color;
+          var lineColors = {
+            'Bakerloo': '#B36305', 	
+            'Central': '#E32017',	
+            'Circle': '#FFD300',
+            'District': '#00782A',	
+            'Hammersmith & City': '#F3A9BB',	
+            'Jubilee': '#A0A5A9',	
+            'Metropolitan': '#9B0056',	
+            'Northern': '#000000',
+            'Piccadilly': '#003688',	
+            'Victoria': '#0098D4',	
+            'Waterloo & City': '#95CDBA',
+            'DLR': '#00A4A7',	
+            'London Overground': '#EE7C0E',
+            'Tramlink': '#84B817',	
+            'Emirates Air Line': '#E21836',	
+            'Crossrail': '#7156A5',
+            'TfL Rail': '#0019a8',
+            'East London': 'orange',
+            undefined: 'green'
+          };
+          var tubeLines = d.id;
+          console.log('d.id', tubeLines);
+          return lineColors[tubeLines] ? color = lineColors[tubeLines] : color = 'green';
+        
+        });
+        
          
       
         
@@ -428,76 +463,23 @@ d3.queue()
       } else {
         // console.log('current', trainRoute[line]);
         var linesGeoData = trainRoute[line];
-        console.log('linesGeoData', linesGeoData);
+        // console.log('linesGeoData', linesGeoData);
 
         makeLine(linesGeoData);
-
-        // var width = 1600;
-        // var height = 1200;
-
-        // var projection = d3.geoMercator()
-        //   .center([0.3848, 51.5074])
-        //   .scale(90000)
-        //   .translate([width, height/2]);
-
-        // var path = d3.geoPath()
-        //   .projection(projection);
-        
-        // // debugger;
-
-        // // return (
-        // d3.select('#map')
-        //   .attr('width', width)
-        //   .attr('height', height)
-        //   .selectAll('.line')
-        //   .data(linesGeoData)
-        //   .enter()
-        //   .append('path')
-        //   .classed('line', true)
-        //   .classed(linesGeoData[0].id, true)
-        //   .attr('d', path)
-        //   .style('fill', 'green')
-        //   .on('mousemove', showToolTip)
-        //   .on('touchStart', showToolTip)
-        //   .on('mouseout', hideToolTip)
-        //   .on('touchEnd', hideToolTip);
-         
+      }
       
-        
-       
-      
-        // var linesGeoTopoData = linesGeoData[0].geometry.coordinates;
-        // console.log('linesGeoTopoData', linesGeoTopoData);
-        // console.log('linesGeoTopoData 0', linesGeoTopoData[0]);
+    });
 
-        // var lineData = d3.svg.line()
-        //   .x(function(d) {
-        //     return d[0]; 
-        //   })
-        //   .y(function(d) {
-        //     return d[1]; 
-        //   })
-        //   .interpolate('basis');
 
-     
-        // return (
-        //   d3.select('#map')
-        //     .attr('width', width)
-        //     .attr('height', height)
-        //     .selectAll('.line')
-        //     .data(linesGeoTopoData)
-        //     .enter()
-        //     .append('path')
-        //     .classed('line', true)
-        //     .attr('d', lineData)
-        //     .style('fill', 'green')
-        //     .on('mousemove', showToolTip)
-        //     .on('touchStart', showToolTip)
-        //     .on('mouseout', hideToolTip)
-        //     .on('touchEnd', hideToolTip)
+    tubeRoutes.forEach(line => {
+      if (line === 'undefined' || tubeLines[line][0].geometry.coordinates[0].length < 2) {
+        return console.log('unknownline');
+      } else {
+        // console.log('current', trainRoute[line]);
+        var tubeGeoData = tubeLines[line];
+        console.log('tubeGeoData', tubeGeoData);
 
-        // );
-
+        makeLine(tubeGeoData);
       }
       
     });
@@ -556,33 +538,33 @@ d3.queue()
       .on('mouseout', hideToolTip)
       .on('touchEnd', hideToolTip);
 
-    d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
-      .selectAll('.eastLondon')
-      .data(eastLondon.features)
-      .enter()
-      .append('path')
-      .classed('eastLondon', true)
-      .attr('d', path)
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+    // d3.select('#map')
+    //   .attr('width', width)
+    //   .attr('height', height)
+    //   .selectAll('.eastLondon')
+    //   .data(eastLondon.features)
+    //   .enter()
+    //   .append('path')
+    //   .classed('eastLondon', true)
+    //   .attr('d', path)
+    //   .on('mousemove', showToolTip)
+    //   .on('touchStart', showToolTip)
+    //   .on('mouseout', hideToolTip)
+    //   .on('touchEnd', hideToolTip);
 
-    d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
-      .selectAll('.eastLondon')
-      .data(trainRoute)
-      .enter()
-      .append('path')
-      .classed('eastLondon', true)
-      .attr('d', path)
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+    // d3.select('#map')
+    //   .attr('width', width)
+    //   .attr('height', height)
+    //   .selectAll('.eastLondon')
+    //   .data(trainRoute)
+    //   .enter()
+    //   .append('path')
+    //   .classed('eastLondon', true)
+    //   .attr('d', path)
+    //   .on('mousemove', showToolTip)
+    //   .on('touchStart', showToolTip)
+    //   .on('mouseout', hideToolTip)
+    //   .on('touchEnd', hideToolTip);
 
     // d3.select('#map')
     //   .attr('width', width)
@@ -632,6 +614,41 @@ d3.queue()
         });
         return color;
       });
+
+    // d3.selectAll('.line')
+    //   .transition()
+    //   .duration(750)
+    //   .ease(d3.easeBackIn)
+    //   .attr('stroke', d => {
+    //     var color;
+    //     var lineColors = {
+    //       'Bakerloo': '#B36305', 	
+    //       'Central': '#E32017',	
+    //       'Circle': '#FFD300',
+    //       'District': '#00782A',	
+    //       'Hammersmith & City': '#F3A9BB',	
+    //       'Jubilee': '#A0A5A9',	
+    //       'Metropolitan': '#9B0056',	
+    //       'Northern': '#000000',
+    //       'Piccadilly': '#003688',	
+    //       'Victoria': '#0098D4',	
+    //       'Waterloo & City': '#95CDBA',
+    //       'DLR': '#00A4A7',	
+    //       'London Overground': '#EE7C0E',
+    //       'Tramlink': '#84B817',	
+    //       'Emirates Air Line': '#E21836',	
+    //       'Crossrail': '#7156A5',
+    //       'TfL Rail': '#0019a8',
+    //       'East London': 'orange'
+    //     };
+    //     var tubeLines = d.id;
+    //     tubeLines.forEach(line => {
+    //     // console.log('line', line.name, lineColors[line.name]);
+    //       return color = lineColors[line.name];
+    //     });
+    //     return color;
+    //   });
+
 
 
     // 'Bethnal Green - Stansted Airport': 
