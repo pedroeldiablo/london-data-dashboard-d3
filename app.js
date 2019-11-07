@@ -129,7 +129,8 @@
 
 
 d3.queue()
-  .defer(d3.json, './eastLondon.json')  
+  .defer(d3.json, './eastLondon.json') 
+  .defer(d3.json, './tube_lines_ordered_branches.json') 
   .defer(d3.json, './uk_topo_ward.json')
   .defer(d3.json, './london_stations_topojson.json')
   .defer(d3.json, './station-centroids.json')
@@ -206,7 +207,7 @@ d3.queue()
       sunday: sunday
     };
   })
-  .await(function(error, eastLondon, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData){
+  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData){
     if(error) throw error;
 
     // console.log(mapData);
@@ -215,9 +216,76 @@ d3.queue()
     var stationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
     //  var allStationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
     var allStationsGeoData = allStationsData.features;
+    var tubeLineRoutes = tubeLinesOrderedBranches.london_underground;
+
+    // console.log('allStationsGeoData',allStationsGeoData);
+
+    // console.log('tubeLineRoutes', tubeLineRoutes);
 
 
-    console.log('geoData', geoData);
+    var orderedTubeLines = [];
+
+    tubeLineRoutes.forEach(line => {
+      // console.log('name', line.line);
+      // console.log('branches', line.branches.length);
+      var tubeLine = line.branches;
+      
+
+      tubeLine.forEach(branch => {
+        var tubeLineSubBranch = line.branches.indexOf(branch);
+        // console.log('tubeLineSubBranch', tubeLineSubBranch);
+        // console.log('name', branch);
+        branch.forEach(station => {
+          var matchingStation = allStationsGeoData.filter(d => d.properties.name === station );
+
+          if(matchingStation.length < 1) {
+            return console.log('Unmatched station', station);
+          } else {
+
+          station = {station};
+
+          station.properties = { ...station, ...matchingStation[0].geometry.coordinates };
+
+          // console.log('...matchingStation[0].geometry.coordinatess', ...matchingStation[0].geometry.coordinates);
+          // console.log('station.properties', station.properties);
+
+          var coordinates = matchingStation[0].geometry.coordinates;
+
+          if(orderedTubeLines[`${line.line}`]){
+            // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+            orderedTubeLines[`${line.line}`][0]['geometry']['coordinates'][0].push(coordinates);
+  
+          } else {
+            orderedTubeLines[`${line.line}`] = [];
+            // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
+            orderedTubeLines[`${line.line}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: line.line });
+          }
+
+
+          // console.log('stations', station);
+          matchingStation.forEach(station => {
+            // console.log('matchingStation', matchingStation);
+            // console.log('matchingStation[0].properties', matchingStation[0].properties);
+            matchingStation[0].properties = { ...matchingStation[0].properties, stationOrder:{tubeLineSubBranch} };
+            // console.log('country after', country);
+            // console.log('matchingStation[0].properties', matchingStation[0].properties);
+
+            
+          });
+        }
+        });
+      
+      });
+
+
+    });
+
+    console.log('orderedTubeLines', orderedTubeLines );
+
+
+
+
+    // console.log('geoData', geoData);
     //  console.log('stationsGeoData', stationsGeoData);
 
     // console.log('allStationsGeoData', allStationsGeoData);
@@ -305,7 +373,7 @@ d3.queue()
       });
     });
 
-    console.log('tubeLines', tubeLines);
+    // console.log('tubeLines', tubeLines);
 
     // TODO filter routes or descriptions and link visually 
 
@@ -384,6 +452,9 @@ d3.queue()
 
     var lineRoutes = Object.keys(trainRoute);
     var tubeRoutes = Object.keys(tubeLines);
+    var orderedTubeRoutes = Object.keys(orderedTubeLines); 
+
+    console.log('orderedTubeRoutes', orderedTubeRoutes);
 
     // console.log('lineRoutes', lineRoutes);
 
@@ -402,9 +473,11 @@ d3.queue()
         
       // debugger;
 
+      // console.log('what are you? linesGeoData[0].id', linesGeoData[0].id)
+
       var id = linesGeoData[0].id.replace(/[/ !@#$%^&*()]/g, '');
 
-      console.log(id);
+      // console.log(id);
 
       // return (
       d3.select('#map')
@@ -457,12 +530,14 @@ d3.queue()
 
     }
 
-    lineRoutes.forEach(line => {
-      if (line === 'undefined' || trainRoute[line][0].geometry.coordinates[0].length < 2) {
+
+
+    orderedTubeRoutes.forEach(line => {
+      if (line === 'undefined' || orderedTubeLines[line][0].geometry.coordinates[0].length < 2) {
         return console.log('unknownline');
       } else {
         // console.log('current', trainRoute[line]);
-        var linesGeoData = trainRoute[line];
+        var linesGeoData = orderedTubeLines[line];
         // console.log('linesGeoData', linesGeoData);
 
         makeLine(linesGeoData);
@@ -470,19 +545,31 @@ d3.queue()
       
     });
 
+    // lineRoutes.forEach(line => {
+    //   if (line === 'undefined' || trainRoute[line][0].geometry.coordinates[0].length < 2) {
+    //     return console.log('unknownline');
+    //   } else {
+    //     // console.log('current', trainRoute[line]);
+    //     var linesGeoData = trainRoute[line];
+    //     // console.log('linesGeoData', linesGeoData);
 
-    tubeRoutes.forEach(line => {
-      if (line === 'undefined' || tubeLines[line][0].geometry.coordinates[0].length < 2) {
-        return console.log('unknownline');
-      } else {
-        // console.log('current', trainRoute[line]);
-        var tubeGeoData = tubeLines[line];
-        console.log('tubeGeoData', tubeGeoData);
-
-        makeLine(tubeGeoData);
-      }
+    //     makeLine(linesGeoData);
+    //   }
       
-    });
+    // });
+
+    // tubeRoutes.forEach(line => {
+    //   if (line === 'undefined' || tubeLines[line][0].geometry.coordinates[0].length < 2) {
+    //     return console.log('unknownline');
+    //   } else {
+    //     // console.log('current', trainRoute[line]);
+    //     var tubeGeoData = tubeLines[line];
+    //     console.log('tubeGeoData', tubeGeoData);
+
+    //     makeLine(tubeGeoData);
+    //   }
+      
+    // });
     // console.log('stationsGeoData', stationsGeoData);
     // console.log('linesGeoData', linesGeoData);
 
