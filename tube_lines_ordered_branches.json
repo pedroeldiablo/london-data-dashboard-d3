@@ -429,7 +429,7 @@
                 [
                     "Hammersmith",
                     "Goldhawk Road",
-                    "Shepherd's Bush",
+                    "Shepherd's Bush Market",
                     "Latimer Road",
                     "Ladbroke Grove",
                     "Westbourne Park",
@@ -494,7 +494,7 @@
                     "Westbourne Park",
                     "Ladbroke Grove",
                     "Latimer Road",
-                    "Shepherd's Bush",
+                    "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith"
                 ]  
@@ -535,7 +535,6 @@
                     "Sloane Square",
                     "South Kensington",
                     "Gloucester Road",
-                    "High Street Kensington",
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
@@ -556,7 +555,6 @@
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
-                    "High Street Kensington",
                     "Gloucester Road",
                     "South Kensington",
                     "Sloane Square",
@@ -622,7 +620,6 @@
                     "Sloane Square",
                     "South Kensington",
                     "Gloucester Road",
-                    "High Street Kensington",
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
@@ -645,7 +642,6 @@
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
-                    "High Street Kensington",
                     "Gloucester Road",
                     "South Kensington",
                     "Sloane Square",
@@ -801,7 +797,6 @@
                     "Fulham Broadway",
                     "West Brompton",
                     "Earl's Court",
-
                     "Gloucester Road",
                     "South Kensington",
                     "Sloane Square",
@@ -834,8 +829,8 @@
                     "Hornchurch",
                     "Upminster Bridge",
                     "Upminster"
-
-                ],[
+                ]
+                ,[
                     "Edgware Road",
                     "Paddington",
                     "Bayswater",
@@ -943,64 +938,6 @@
                     "Paddington",
                     "Edgware Road"
                 ]
-            ]
-        },{
-            "line": "Jubilee",
-            "branches" : [
-                [
-                    "Stanmore",
-                    "Canons Park",
-                    "Queensbury",
-                    "Kingsbury",
-                    "Wembley Park",
-                    "Neasden",
-                    "Dollis Hill",
-                    "Willesden Green",
-                    "Kilburn",
-                    "West Hampstead",
-                    "Finchley Road",
-                    "Swiss Cottage",
-                    "St. John's Wood",
-                    "Baker Street",
-                    "Bond Street",
-                    "Green Park",
-                    "Westminster",
-                    "Waterloo",
-                    "Southwark",
-                    "London Bridge",
-                    "Bermondsey",
-                    "Canada Water",
-                    "Canary Wharf",
-                    "Canning Town",
-                    "West Ham",
-                    "Stratford",
-                    "Stratford",
-                    "West Ham",
-                    "Canning Town",
-                    "Canary Wharf",
-                    "Canada Water",
-                    "Bermondsey",
-                    "London Bridge",
-                    "Southwark",
-                    "Waterloo",
-                    "Westminster",
-                    "Green Park",
-                    "Bond Street",
-                    "Baker Street",
-                    "St. John's Wood",
-                    "Swiss Cottage",
-                    "Finchley Road",
-                    "West Hampstead",
-                    "Kilburn",
-                    "Willesden Green",
-                    "Dollis Hill",
-                    "Neasden",
-                    "Wembley Park",
-                    "Kingsbury",
-                    "Queensbury",
-                    "Canons Park",
-                    "Stanmore"
-                ]  
             ]
         },{
             "line": "Metropolitan",

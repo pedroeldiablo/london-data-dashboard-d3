@@ -233,7 +233,9 @@ d3.queue()
 
       tubeLine.forEach(branch => {
         var tubeLineSubBranch = line.branches.indexOf(branch);
-        // console.log('tubeLineSubBranch', tubeLineSubBranch);
+
+
+        console.log('tubeLineSubBranch', tubeLineSubBranch);
         // console.log('name', branch);
         branch.forEach(station => {
           var matchingStation = allStationsGeoData.filter(d => d.properties.name === station );
@@ -251,14 +253,14 @@ d3.queue()
 
           var coordinates = matchingStation[0].geometry.coordinates;
 
-          if(orderedTubeLines[`${line.line}`]){
+          if(orderedTubeLines[`${line.line}-${tubeLineSubBranch}`]){
             // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
-            orderedTubeLines[`${line.line}`][0]['geometry']['coordinates'][0].push(coordinates);
+            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`][0]['geometry']['coordinates'][0].push(coordinates);
   
           } else {
-            orderedTubeLines[`${line.line}`] = [];
+            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`] = [];
             // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
-            orderedTubeLines[`${line.line}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: line.line });
+            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: `${line.line}-${tubeLineSubBranch}` });
           }
 
 
@@ -399,7 +401,7 @@ d3.queue()
       
     });
 
-    // console.log(`trainRoute ${lines}`, trainRoute[`${lines}`]);
+    // console.log(`trainRoute`, trainRoute);
 
     // d3.select('#map')
     //   .attr('width', width)
@@ -519,6 +521,7 @@ d3.queue()
           };
           var tubeLines = d.id;
           console.log('d.id', tubeLines);
+          tubeLines = tubeLines.split('-')[0];
           return lineColors[tubeLines] ? color = lineColors[tubeLines] : color = 'green';
         
         });
