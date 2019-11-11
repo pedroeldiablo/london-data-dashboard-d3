@@ -232,6 +232,7 @@ d3.queue()
       
 
       tubeLine.forEach(branch => {
+        var numberOfSubbranches = line.branches.length;
         var tubeLineSubBranch = line.branches.indexOf(branch);
 
 
@@ -253,14 +254,14 @@ d3.queue()
 
           var coordinates = matchingStation[0].geometry.coordinates;
 
-          if(orderedTubeLines[`${line.line}-${tubeLineSubBranch}`]){
+          if(orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`]){
             // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
-            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`][0]['geometry']['coordinates'][0].push(coordinates);
+            orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`][0]['geometry']['coordinates'][0].push(coordinates);
   
           } else {
-            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`] = [];
+            orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`] = [];
             // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
-            orderedTubeLines[`${line.line}-${tubeLineSubBranch}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: `${line.line}-${tubeLineSubBranch}` });
+            orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: `${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}` });
           }
 
 
@@ -496,6 +497,13 @@ d3.queue()
         .on('touchStart', showToolTip)
         .on('mouseout', hideToolTip)
         .on('touchEnd', hideToolTip)
+        .attr('opacity', d => {
+          var tubeLines = d.id;
+          var noBranches = tubeLines.split('-')[1];
+          console.log(noBranches);
+          return 1 / (1 + noBranches);
+
+        })
         .attr('stroke', d => {
           var color;
           var lineColors = {
