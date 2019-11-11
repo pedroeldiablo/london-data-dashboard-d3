@@ -1,133 +1,3 @@
-// "transform":
-// {"scale":[0.3556874528312616,0.34023701074684576],"translate":[503568.19958180457,155850.79750088477]},
-// "objects":
-// {"London_Ward":
-// {"type":"GeometryCollection",
-// "geometries":[
-// {"arcs":[[0,1]],
-// "type":"Polygon",
-// "properties":{
-//     "NAME":"Chessington South",
-//     "GSS_CODE":"E05000405",
-//     "DISTRICT":"Kingston upon Thames",
-//     "LAGSSCODE":"E09000021",
-//     "HECTARES":755.173,"NONLD_AREA":0
-// }},
-// {"arcs":[[2,3,4,5,6]],"type":"Polygon","properties":{"NAME":"Tolworth and Hook Rise","GSS_CODE":"E05000414","DISTRICT":"Kingston upon Thames","LAGSSCODE":"E09000021","HECTARES":259.464,"NONLD_AREA":0}},
-// {"arcs":[[7,8,9,10,11]],"type":"Polygon","properties":{"NAME":"Berrylands","GSS_CODE":"E05000401","DISTRICT":"Kingston upon Thames","LAGSSCODE":"E09000021","HECTARES":145.39,"NONLD_AREA":0}},{"arcs":[[-6,12,-11,13,14,15]],"type":"Polygon"
-
-// Ward name,
-// Old code,
-// New code,
-// Population - 2015,
-// Children aged 0-15 - 2015,
-// Working-age (16-64) - 2015,
-// Older people aged 65+ - 2015,
-// % All Children aged 0-15 - 2015,
-// % All Working-age (16-64) - 2015,
-// % All Older people aged 65+ - 2015,
-// Mean Age - 2013,
-// Median Age - 2013,
-// Area - Square Kilometres,
-// Population density (persons per sq km) - 2013,
-// % BAME - 2011,
-// % Not Born in UK - 2011,
-// % English is First Language of no one in household - 2011,
-// General Fertility Rate - 2013,
-// Male life expectancy -2009-13,
-// Female life expectancy -2009-13,
-// % children in reception year who are obese - 2011/12 to 2013/14,
-// % children in year 6 who are obese- 2011/12 to 2013/14,
-// "Rate of All Ambulance Incidents per 1,000 population - 2014",
-// Rates of ambulance call outs for alcohol related illness - 2014,
-// Number Killed or Seriously Injured on the roads - 2014,
-// In employment (16-64) - 2011,
-// Employment rate (16-64) - 2011,
-// Number of jobs in area - 2013,
-// Employment per head of resident WA population - 2013,
-// Rate of new registrations of migrant workers - 2011/12,
-// Median House Price (£) - 2014,
-// Number of properties sold - 2014,
-// Median Household income estimate (2012/13),
-// Number of Household spaces - 2011,
-// % detached houses - 2011,
-// % semi-detached houses - 2011,
-// % terraced houses - 2011,
-// "% Flat, maisonette or apartment - 2011",
-// % Households Owned - 2011,
-// % Households Social Rented - 2011,
-// % Households Private Rented - 2011,
-// % dwellings in council tax bands A or B - 2015,
-// "% dwellings in council tax bands C, D or E - 2015",
-// "% dwellings in council tax bands F, G or H - 2015",
-// Claimant rate of key out-of-work benefits (working age client group) (2014),
-// Claimant Rate of Housing Benefit (2015),
-// Claimant Rate of Employment Support Allowance - 2014,
-// Rate of JobSeekers Allowance (JSA) Claimants - 2015,
-// % dependent children (0-18) in out-of-work households - 2014,
-// % of households with no adults in employment with dependent children - 2011,
-// % of lone parents not in employment - 2011,
-// (ID2010) - Rank of average score (within London) - 2010,
-// (ID2010) % of LSOAs in worst 50% nationally - 2010,
-// Average GCSE capped point scores - 2014,
-// Unauthorised Absence in All Schools (%) - 2013,
-// % with no qualifications - 2011,
-// % with Level 4 qualifications and above - 2011,
-// A-Level Average Point Score Per Student - 2013/14,
-// A-Level Average Point Score Per Entry; 2013/14,
-// Crime rate - 2014/15,
-// Violence against the person rate - 2014/15,
-// "Deliberate Fires per 1,000 population - 2014",
-// % area that is open space - 2014,
-// Cars per household - 2011,
-// Average Public Transport Accessibility score - 2014,
-// % travel by bicycle to work - 2011,
-// Turnout at Mayoral election - 2012,
-
-
-// NLC,
-// TLC,
-// Station Name,
-// Region,
-// Local Authority,
-// Constituency,
-// OS Grid Easting,
-// OS Grid Northing,
-// Station Facility Owner,
-// Station Group,
-// PTE Urban Area Station,
-// London Travelcard Area,
-// SRS Code,
-// SRS Description,
-// NR Route,
-// CRP Line Designation,
-// Entries & Exits_Full,
-// Entries & Exits_Reduced,
-// Entries & Exits_Season,
-// 1718 Entries & Exits,
-// 1617 Entries & Exits,
-// 1718 Interchanges,
-// 1718 Entries & Exits - GB rank,
-// 1617 Entries & Exits - GB rank,
-// Large station change flag,
-// Small station change flag,
-// % Change,
-// Explanation of large change 1718,
-// Source for explanation of large change 1718
-
-// nlc,
-// Station,
-// Borough,
-// Note,
-// WeekdayEntry,
-// SaturdayEntry,
-// SundayEntry,
-// WeekdayExit,
-// SaturdayExit,
-// SundayExit,
-// Entry + Exit Million
-
-
 d3.queue()
   .defer(d3.json, './eastLondon.json') 
   .defer(d3.json, './tube_lines_ordered_branches.json') 
@@ -207,7 +77,16 @@ d3.queue()
       sunday: sunday
     };
   })
-  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData){
+  .defer(d3.csv, './dlr-usage-2015-2016.csv', function(row){
+    var name = row['Station'];
+    var stationUsage = row['BoardAlight'];
+
+    return {
+      name: name,
+      entriesExits: stationUsage,
+    };
+  })
+  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData){
     if(error) throw error;
 
     // console.log(mapData);
@@ -336,6 +215,23 @@ d3.queue()
         // console.log('station before', station);
         station.properties = row;
         // console.log('station after', station);
+      });
+    });
+
+    dlrStationUsageData.forEach(row => {
+      console.log('row', row);
+      
+      var stations = allStationsGeoData.filter(d => {
+        // console.log('data d', d);
+        return d.properties.name === row.name;
+      }
+        
+      );
+      console.log('stations', stations);
+      stations.forEach(station => {
+        // console.log('station before', station);
+        station.properties = row;
+        console.log('station after', station);
       });
     });
 
