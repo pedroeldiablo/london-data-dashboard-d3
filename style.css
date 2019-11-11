@@ -102,6 +102,7 @@ path {
 /* transform: translate(800px, -25200px); */
     stroke-width: 10px;
     fill: transparent;
+    mix-blend-mode: multiply;
   }
 
   .eastLondon {
