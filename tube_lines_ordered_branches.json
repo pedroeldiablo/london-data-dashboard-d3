@@ -363,7 +363,7 @@
                 [
                     "Hammersmith",
                     "Goldhawk Road",
-                    "Shepherd's Bush",
+                    "Shepherd's Bush Market",
                     "Latimer Road",
                     "Ladbroke Grove",
                     "Westbourne Park",
@@ -418,7 +418,7 @@
                     "Westbourne Park",
                     "Ladbroke Grove",
                     "Latimer Road",
-                    "Shepherd's Bush",
+                    "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith"
                 ]  
@@ -801,6 +801,7 @@
                     "Fulham Broadway",
                     "West Brompton",
                     "Earl's Court",
+
                     "Gloucester Road",
                     "South Kensington",
                     "Sloane Square",
