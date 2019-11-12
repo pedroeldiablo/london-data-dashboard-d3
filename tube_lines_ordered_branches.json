@@ -1521,7 +1521,7 @@
                 ]  
             ]
         },{
-            "line": "Overground-East London & South London lines",
+            "line": "London Overground_East London & South London lines",
             "branches": [
                 [
                 "Dalston Junction",
@@ -1658,7 +1658,7 @@
             ]
         ]
         },{
-            "line": "Overground-North London & West London lines",
+            "line": "London Overground_North London & West London lines",
             "branches": [
                 [
                     "Richmond",
@@ -1758,7 +1758,7 @@
                 ]
             ]
         },{
-                "line": "Overground-Watford DC line",
+                "line": "London Overground_Watford DC line",
                 "branches": [
                     [
                     "Watford Junction",
@@ -1804,7 +1804,7 @@
                 ]
          },{
             
-                "line": "Overground-Gospel Oak to Barking line",
+                "line": "London Overground_Gospel Oak to Barking line",
         "branches": [
             [
                 "Gospal Oak",
@@ -1836,7 +1836,7 @@
         ]
         },{
            
-               "line": "Overground-Lea Valley lines",
+               "line": "London Overground_Lea Valley lines",
        "branches": [
            [
                "Liverpool Street",
@@ -1928,7 +1928,7 @@
            ]
         ]
          },{
-            "line": "Overground-Romford–Upminster line",
+            "line": "London Overground_Romford to Upminster line",
             "branches": [
                 [
                     "Romford",

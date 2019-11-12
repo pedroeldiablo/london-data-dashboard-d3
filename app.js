@@ -426,6 +426,8 @@ d3.queue()
           var tubeLines = d.id;
           console.log('d.id', tubeLines);
           tubeLines = tubeLines.split('-')[0];
+          tubeLines = tubeLines.split('_')[0];
+          console.log('Overground? ', tubeLines);
           return lineColors[tubeLines] ? color = lineColors[tubeLines] : color = 'green';
         
         });
