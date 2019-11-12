@@ -396,7 +396,9 @@ d3.queue()
         .attr('opacity', d => {
           var tubeLines = d.id;
           var noBranches = tubeLines.split('-')[1];
-          console.log(noBranches);
+          noBranches = parseFloat(noBranches);
+          console.log('noBranches', id, noBranches);
+          console.log('opacity', id, 1 / noBranches );
           return 1 / (1 + noBranches);
 
         })

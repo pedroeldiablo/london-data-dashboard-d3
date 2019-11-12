@@ -99,10 +99,12 @@ path {
   }
 
   .line {
-/* transform: translate(800px, -25200px); */
-    stroke-width: 10px;
+    stroke-width: 5px;
     fill: transparent;
-    mix-blend-mode: overlay;
+    pointer-events: none;
+
+    /* Makes lines invisible on Chrome*/
+    /* mix-blend-mode: overlay; */
   }
 
   .eastLondon {
