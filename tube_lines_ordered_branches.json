@@ -364,6 +364,7 @@
                     "Hammersmith",
                     "Goldhawk Road",
                     "Shepherd's Bush Market",
+                    "Wood Lane",
                     "Latimer Road",
                     "Ladbroke Grove",
                     "Westbourne Park",
@@ -418,6 +419,7 @@
                     "Westbourne Park",
                     "Ladbroke Grove",
                     "Latimer Road",
+                    "Wood Lane",
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith"
@@ -430,6 +432,7 @@
                     "Hammersmith",
                     "Goldhawk Road",
                     "Shepherd's Bush Market",
+                    "Wood Lane",
                     "Latimer Road",
                     "Ladbroke Grove",
                     "Westbourne Park",
@@ -494,6 +497,7 @@
                     "Westbourne Park",
                     "Ladbroke Grove",
                     "Latimer Road",
+                    "Wood Lane",
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith"
@@ -1189,7 +1193,7 @@
                 ]
             ]
         },{
-            "line": "Northern",
+            "line": "Northern_Bank",
             "branches" : [
                 [
                     "Morden",
@@ -1311,7 +1315,12 @@
                     "Colliers Wood",
                     "South Wimbledon",
                     "Morden"
-                ],[
+                ]
+            ]
+        },{
+            "line": "Northern_Charing Cross",
+            "branches" : [
+                [
                     "Morden",
                     "South Wimbledon",
                     "Colliers Wood",

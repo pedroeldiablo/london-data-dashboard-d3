@@ -941,11 +941,11 @@ function showToolTip(d) {
 
     .html(`
     <p>Name: ${properties.name}</p>
+    <p>All Rail Journeys: ${((+properties.railEntriesExits ? +properties.railEntriesExits: 0) + (properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0) + (properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0 ) + (properties.interChanges ? +properties.interChanges : 0)).toLocaleString()}</p>
     <p>Rail: ${(properties.railEntriesExits ? +properties.railEntriesExits : 0).toLocaleString()}</p>
     <p>Tube:  ${(properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0).toLocaleString()}</p>
     <p>DLR: ${(properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0).toLocaleString()} </p>
     <p>interChanges: ${(properties.interChanges ? +properties.interChanges : 0).toLocaleString()}</p>
-    <p>allJournies: ${((+properties.railEntriesExits ? +properties.railEntriesExits: 0) + (properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0) + (properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0 ) + (properties.interChanges ? +properties.interChanges : 0)).toLocaleString()}</p>
     <p>rank: ${properties.rank}</p>
     <p>NLC: ${properties.NLC}</p>
     <p>route: ${properties.route}</p>
