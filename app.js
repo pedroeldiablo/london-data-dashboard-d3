@@ -105,6 +105,16 @@ d3.queue()
     // console.log('tubeLineRoutes', tubeLineRoutes);
 
     stationsGeoData.forEach(station => {
+
+      if((station.properties.name === 'King\'s Cross St. Pancras') || 
+      (station.properties.name === 'King\'s Cross') ||
+      (station.properties.name === 'St. Pancras'))
+      {
+        console.log('Found one', stations.properties.name);
+        console.log('Found one', stations.properties);
+
+
+      }
       // console.log('london_stations_topojson stationsGeoData ', station.properties.id);
       // var stations = allStationsGeoData.filter(d => {
       //   // console.log('data d', d);
@@ -127,6 +137,14 @@ d3.queue()
       // });
       if (stations){
         stations.properties = { ...stations.properties, ...station.properties};
+
+        if(stations.properties.name === 'King\'s Cross St. Pancras')
+        {
+          console.log('Found one', stations.properties.name);
+          console.log('Found one', stations.properties);
+
+
+        }
         // console.log('station after stationUsageData1', station1.properties.name, station1, station);
       // });
       console.log('stations after', stations);
@@ -227,7 +245,7 @@ d3.queue()
       });
     });
 
-
+    var STPKXS;
 
     stationUsageData.forEach(row => {
       // console.log('row', row);
@@ -252,7 +270,38 @@ d3.queue()
         console.log('stations', stations);
 
       } else {
-        console.log('stations prior', row);
+        console.log('stations prior123', row);
+        if(row.name === "St.Pancras" || row.name === "King's Cross" ){
+          console.log('STPKXS? Row1', row);
+          STPKXS = allStationsGeoData.find(d => {
+            // console.log('STPKXS data d', d.properties.name);
+            // return d.properties.nlc_id === +row.NLC;
+            return d.properties.name === "King's Cross St. Pancras";
+
+            
+          });
+          console.log('STPKXS? ', STPKXS);
+          console.log('STPKXS? Row2', row);
+
+          // var combinationStation = row.forEach(field => {
+          //   STPKXS.properties[field] = STPKXS.properties[field] + field;
+
+          // });
+
+          for (let key in row) {
+            // console.log('row.key', row[key]);
+            // console.log('STPKXS.properties.key', STPKXS.properties.key);
+            STPKXS.properties[key] = (STPKXS.properties[key] ? +STPKXS.properties[key] : "") + +row[key];
+            // console.log('row.key', key);
+            // console.log('STPKXS.properties.key', STPKXS.properties.key);
+          }
+
+          // console.log('combinationStation', combinationStation);
+          // STPKXS.properties = { ...STPKXS.properties[name], ...STPKXS.properties, ...row};
+          STPKXS.properties.name = "King's Cross St. Pancras";
+          console.log('STPKXS? ', STPKXS);
+          
+        }
       }
       // console.log('stations', stations);
       // stations.forEach(station => {

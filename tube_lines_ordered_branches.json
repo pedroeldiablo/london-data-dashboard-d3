@@ -14,7 +14,7 @@
                     "Regent's Park",
                     "Baker Street",
                     "Marylebone",
-                    "Edgware Road",
+                    "Edgware Road (Bak)",
                     "Paddington",
                     "Warwick Avenue",
                     "Maida Vale",
@@ -43,7 +43,7 @@
                     "Maida Vale",
                     "Warwick Avenue",
                     "Paddington",
-                    "Edgware Road",
+                    "Edgware Road (Bak)",
                     "Marylebone",
                     "Baker Street",
                     "Regent's Park",
@@ -370,7 +370,7 @@
                     "Westbourne Park",
                     "Royal Oak",
                     "Paddington",
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Baker Street",
                     "Great Portland Street",
                     "Euston Square",
@@ -413,7 +413,7 @@
                     "Euston Square",
                     "Great Portland Street",
                     "Baker Street",
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Paddington",
                     "Royal Oak",
                     "Westbourne Park",
@@ -438,7 +438,7 @@
                     "Westbourne Park",
                     "Royal Oak",
                     "Paddington",
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Baker Street",
                     "Great Portland Street",
                     "Euston Square",
@@ -464,8 +464,8 @@
                     "High Street Kensington",
                     "Notting Hill Gate",
                     "Bayswater",
-                    "Edgware Road",
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
+                    "Edgware Road (Cir)",
                     "Bayswater",
                     "Notting Hill Gate",
                     "High Street Kensington",
@@ -491,7 +491,7 @@
                     "Euston Square",
                     "Great Portland Street",
                     "Baker Street",
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Paddington",
                     "Royal Oak",
                     "Westbourne Park",
@@ -835,7 +835,7 @@
                     "Upminster"
                 ]
                 ,[
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
                     "Notting Hill Gate",
@@ -864,9 +864,9 @@
                     "Notting Hill Gate",
                     "Bayswater",
                     "Paddington",
-                    "Edgware Road"
+                    "Edgware Road (Cir)"
                 ],[
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
                     "Notting Hill Gate",
@@ -897,9 +897,9 @@
                     "Notting Hill Gate",
                     "Bayswater",
                     "Paddington",
-                    "Edgware Road"
+                    "Edgware Road (Cir)"
                 ],[
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
                     "Notting Hill Gate",
@@ -912,9 +912,9 @@
                     "Notting Hill Gate",
                     "Bayswater",
                     "Paddington",
-                    "Edgware Road"
+                    "Edgware Road (Cir)"
                 ],[
-                    "Edgware Road",
+                    "Edgware Road (Cir)",
                     "Bayswater",
                     "Notting Hill Gate",
                     "High Street Kensington",
@@ -940,7 +940,7 @@
                     "Notting Hill Gate",
                     "Bayswater",
                     "Paddington",
-                    "Edgware Road"
+                    "Edgware Road (Cir)"
                 ]
             ]
         },{
@@ -1650,6 +1650,7 @@
             ],[
                 "Highbury & Islington",
                 "Canonbury",
+                "Dalston Junction",
                 "Haggerston", 
                 "Hoxton", 
                 "Shoreditch High Street", 
@@ -1680,11 +1681,13 @@
                 "Shoreditch High Street",
                 "Hoxton",
                 "Haggerston",
+                "Dalston Junction",
                 "Canonbury",
                 "Highbury & Islington"
             ],[
                 "Highbury & Islington",
                 "Canonbury",
+                "Dalston Junction",
                 "Haggerston", 
                 "Hoxton", 
                 "Shoreditch High Street", 
@@ -1721,6 +1724,7 @@
                 "Shoreditch High Street",
                 "Hoxton",
                 "Haggerston",
+                "Dalston Junction",
                 "Canonbury",
                 "Highbury & Islington"
             ]
@@ -1875,7 +1879,7 @@
                 "line": "London Overground_Gospel Oak to Barking line",
         "branches": [
             [
-                "Gospal Oak",
+                "Gospel Oak",
                 "Upper Holloway", 
                 "Crouch Hill", 
                 "Harringay Green Lanes", 
@@ -1898,7 +1902,7 @@
                 "Harringay Green Lanes",
                 "Crouch Hill",
                 "Upper Holloway",
-                "Gospal Oak"
+                "Gospel Oak"
 
             ]
         ]
@@ -1908,7 +1912,7 @@
        "branches": [
            [
                "Liverpool Street",
-               " Bethnal Green", 
+               "Bethnal Green Weavers Field", 
                "Cambridge Heath", 
                "London Fields", 
                "Hackney Downs", 
@@ -1935,12 +1939,12 @@
                "Hackney Downs",
                "London Fields",
                "Cambridge Heath",
-               " Bethnal Green",
+               "Bethnal Green Weavers Field",
                 "Liverpool Street"
 
            ],[
                 "Liverpool Street",
-                "Bethnal Green", 
+                "Bethnal Green Weavers Field", 
                 "Cambridge Heath", 
                 "London Fields", 
                 "Hackney Downs", 
@@ -1971,12 +1975,12 @@
                 "Hackney Downs",
                 "London Fields",
                 "Cambridge Heath",
-                "Bethnal Green",
+                "Bethnal Green Weavers Field",
                 "Liverpool Street"
 
            ],[
             "Liverpool Street",
-            "Bethnal Green", 
+            "Bethnal Green Weavers Field", 
             "Hackney Downs", 
             "Clapton", 
             "St James Street", 
@@ -1991,7 +1995,7 @@
             "St James Street",
             "Clapton",
             "Hackney Downs",
-            "Bethnal Green",
+            "Bethnal Green Weavers Field",
             "Liverpool Street"
            ]
         ]
