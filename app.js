@@ -420,6 +420,27 @@ d3.queue()
     
     });
 
+    let stationOrder = []
+
+    allStationsGeoData.forEach(station => {
+      var passengers = station.properties.allRailJourneys;
+      stationOrder.push(passengers);
+    
+    });
+
+    console.log('stationOrder', stationOrder);
+
+    stationOrder.sort(function(a, b){return b - a});
+
+    console.log('stationOrder', stationOrder);
+
+    allStationsGeoData.forEach(station => {
+      var passengers = station.properties.allRailJourneys;
+      station.properties.journeyRank = 1 + stationOrder.indexOf(passengers);
+    })
+
+
+
     var tubeLines = [];
     // console.log('stationsGeoData',stationsGeoData);
   
@@ -763,7 +784,9 @@ d3.queue()
         tubeEntriesExits: ['orange', 'purple'],
         interChanges: ['orange', 'purple'],
         allRailJourneys: ['orange', 'purple'],
-        rank: ['orange', 'purple']
+        rank: ['orange', 'purple'],
+        journeyRank: ['green', 'orange']
+
 
       };
 
@@ -773,6 +796,7 @@ d3.queue()
       var scale = d3.scaleLinear()
         .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
         .range(colorRanges[val]);
+        
       
       d3.selectAll('.station')
         .transition()
@@ -849,6 +873,7 @@ function showToolTip(d) {
     <p>Tube:  ${(properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0).toLocaleString()}</p>
     <p>DLR: ${(properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0).toLocaleString()} </p>
     <p>interChanges: ${(properties.interChanges ? +properties.interChanges : 0).toLocaleString()}</p>
+    <p>All Journeys Rank: ${properties.journeyRank}</p>
     <p>rank: ${properties.rank}</p>
     <p>NLC: ${properties.NLC}</p>
     <p>route: ${properties.route}</p>
