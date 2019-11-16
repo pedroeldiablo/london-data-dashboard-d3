@@ -47,13 +47,18 @@ d3.queue()
     var srsCode = row['SRS Code'];
     var routeDescription = row['SRS Description'];
     var rank = +row['1718 Entries & Exits - GB rank'];
+    // var tubeEntriesExits = 0;
+    // var dlrEntriesExits = 0;
     
     return {
       name: name,
       railEntriesExits: entriesExits,
-      // entriesExits: entriesExits,
+      entriesExits: entriesExits,
+      // dlrEntriesExits: dlrEntriesExits,
+      // tubeUsage: tubeEntriesExits,
+      // tubeEntriesExits: 0,
       interChanges: interChanges,
-      allJournies: entriesExits +  interChanges,
+      // allRailJourneys: entriesExits +  interChanges + tubeEntriesExits + dlrEntriesExits,
       NLC: NLC,
       route: route,
       srsCode: srsCode,
@@ -67,12 +72,18 @@ d3.queue()
     var weekday = (+row['WeekdayEntry'] + +row['WeekdayExit']) * 252;
     var saturday = (+row['SaturdayEntry'] + +row['SaturdayExit'])  * 52;
     var sunday = (+row['SundayEntry'] + +row['SundayExit'])  * 58;
-    var stationUsage =  weekday + saturday + sunday;
+    var tubeEntriesExits =  weekday + saturday + sunday;
+    // var entriesExits = 0;
+    // var interChanges = 0;
+    // var dlrEntriesExits = 0;
 
     return {
+      // interChanges: interChanges,
+      // entriesExits: entriesExits,
+      // allRailJourneys: entriesExits +  interChanges + tubeEntriesExits + dlrEntriesExits,
       name: name,
-      tubeUsage: stationUsage,
-      tubeEntriesExits: stationUsage,
+      tubeUsage: tubeEntriesExits,
+      tubeEntriesExits: tubeEntriesExits,
       NLC: nlc,
       weekday: weekday,
       saturday: saturday,
@@ -399,6 +410,16 @@ d3.queue()
     //   });
     // });
 
+    allStationsGeoData.forEach(station => {
+      station.properties.allRailJourneys = (station.properties.entriesExits ?  +station.properties.entriesExits : 0 ) 
+      +  (station.properties.interChanges ? +station.properties.interChanges : 0) 
+      + (station.properties.tubeEntriesExits ? +station.properties.tubeEntriesExits : 0 )
+      + (station.properties.dlrEntriesExits ? +station.properties.dlrEntriesExits : 0 );
+      
+      console.log('station all journeys', station)
+    
+    });
+
     var tubeLines = [];
     // console.log('stationsGeoData',stationsGeoData);
   
@@ -449,57 +470,6 @@ d3.queue()
       
     });
 
-    // console.log(`trainRoute`, trainRoute);
-
-    // d3.select('#map')
-    //   .attr('width', width)
-    //   .attr('height', height)
-    //   .selectAll('.eastLondon')
-    //   .data(trainRoute[`${lines}`])
-    //   .enter()
-    //   .append('path')
-    //   .classed('eastLondon', true)
-    //   .attr('d', path)
-    //   .on('mousemove', showToolTip)
-    //   .on('touchStart', showToolTip)
-    //   .on('mouseout', hideToolTip)
-    //   .on('touchEnd', hideToolTip);
-
-
-    // console.log('trainRoute', trainRoute);
-    // console.log('tubeLines', tubeLines);
-
-    // console.log( tubeLines);
-    // console.log("hi");
-
-    // console.log('length', tubeLines, Object.keys(tubeLines), tubeLines.length);
-
-    // var lineNames = Object.keys(tubeLines);
-
-    // lineNames.forEach(line => {
-    //   console.log('current', tubeLines[line]);
-    //   var linesGeoData = tubeLines[line];
-    //   console.log('linesGeoData', linesGeoData);
-    //   return (
-    //     d3.select('#map')
-    //       .attr('width', width)
-    //       .attr('height', height)
-    //       .selectAll('.line')
-    //       .data(linesGeoData)
-    //       .enter()
-    //       .append('path')
-    //       .classed('line', true)
-    //       .attr('d', path)
-    //       .style('fill', 'green')
-    //       .on('mousemove', showToolTip)
-    //       .on('touchStart', showToolTip)
-    //       .on('mouseout', hideToolTip)
-    //       .on('touchEnd', hideToolTip)
-
-    //   );
-    // });
-      
-
     var lineRoutes = Object.keys(trainRoute);
     var tubeRoutes = Object.keys(tubeLines);
     var orderedTubeRoutes = Object.keys(orderedTubeLines); 
@@ -540,10 +510,10 @@ d3.queue()
         .classed('line', true)
         .classed(id, true)
         .attr('d', path)
-        .on('mousemove', showToolTip)
-        .on('touchStart', showToolTip)
-        .on('mouseout', hideToolTip)
-        .on('touchEnd', hideToolTip)
+        // .on('mousemove', showToolTip)
+        // .on('touchStart', showToolTip)
+        // .on('mouseout', hideToolTip)
+        // .on('touchEnd', hideToolTip)
         .attr('opacity', d => {
           var tubeLines = d.id;
           var noBranches = tubeLines.split('-')[1];
@@ -584,15 +554,7 @@ d3.queue()
           return lineColors[tubeLines] ? color = lineColors[tubeLines] : color = 'green';
         
         });
-        
-         
-      
-        
-       
-
     }
-
-
 
     orderedTubeRoutes.forEach(line => {
       if (line === 'undefined' || orderedTubeLines[line][0].geometry.coordinates[0].length < 2) {
@@ -606,35 +568,6 @@ d3.queue()
       }
       
     });
-
-    // lineRoutes.forEach(line => {
-    //   if (line === 'undefined' || trainRoute[line][0].geometry.coordinates[0].length < 2) {
-    //     return console.log('unknownline');
-    //   } else {
-    //     // console.log('current', trainRoute[line]);
-    //     var linesGeoData = trainRoute[line];
-    //     // console.log('linesGeoData', linesGeoData);
-
-    //     makeLine(linesGeoData);
-    //   }
-      
-    // });
-
-    // tubeRoutes.forEach(line => {
-    //   if (line === 'undefined' || tubeLines[line][0].geometry.coordinates[0].length < 2) {
-    //     return console.log('unknownline');
-    //   } else {
-    //     // console.log('current', trainRoute[line]);
-    //     var tubeGeoData = tubeLines[line];
-    //     console.log('tubeGeoData', tubeGeoData);
-
-    //     makeLine(tubeGeoData);
-    //   }
-      
-    // });
-    // console.log('stationsGeoData', stationsGeoData);
-    // console.log('linesGeoData', linesGeoData);
-
 
     var width = 3200;
     var height = 2400;
@@ -655,7 +588,7 @@ d3.queue()
     var path2 = d3.geoPath()
       .projection(projection2);
 
-    console.log('geoData', geoData);
+    console.log('Looking for this allStationsGeoData', allStationsGeoData);
 
     d3.select('#map')
       .attr('width', width)
@@ -665,11 +598,11 @@ d3.queue()
       .enter()
       .append('path')
       .classed('country', true)
-      .attr('d', path)
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+      .attr('d', path);
+      // .on('mousemove', showToolTip)
+      // .on('touchStart', showToolTip)
+      // .on('mouseout', hideToolTip)
+      // .on('touchEnd', hideToolTip);
 
     d3.select('#map')
       .attr('width', width)
@@ -687,34 +620,7 @@ d3.queue()
       .on('mouseout', hideToolTip)
       .on('touchEnd', hideToolTip);
 
-    // d3.select('#map')
-    //   .attr('width', width)
-    //   .attr('height', height)
-    //   .selectAll('.eastLondon')
-    //   .data(eastLondon.features)
-    //   .enter()
-    //   .append('path')
-    //   .classed('eastLondon', true)
-    //   .attr('d', path)
-    //   .on('mousemove', showToolTip)
-    //   .on('touchStart', showToolTip)
-    //   .on('mouseout', hideToolTip)
-    //   .on('touchEnd', hideToolTip);
-
-    // d3.select('#map')
-    //   .attr('width', width)
-    //   .attr('height', height)
-    //   .selectAll('.eastLondon')
-    //   .data(trainRoute)
-    //   .enter()
-    //   .append('path')
-    //   .classed('eastLondon', true)
-    //   .attr('d', path)
-    //   .on('mousemove', showToolTip)
-    //   .on('touchStart', showToolTip)
-    //   .on('mouseout', hideToolTip)
-    //   .on('touchEnd', hideToolTip);
-
+    
     // d3.select('#map')
     //   .attr('width', width)
     //   .attr('height', height)
@@ -798,53 +704,6 @@ d3.queue()
     //     return color;
     //   });
 
-
-
-    // 'Bethnal Green - Stansted Airport': 
-    // 'Brighton - Havant': 
-    // 'Bromley North Branch': 
-    // 'Chingford Branch': 
-    // 'Chislehurst - Ashford': 
-    // 'Chislehurst - Tonbridge': 
-    // 'Dartford Lines to Gravesend and Hayes Branch': 
-    // 'East Grinstead Line': 
-    // 'East London Line': 
-    // 'Euston - Watford Junction (DC Lines)': 
-    // 'Fenchurch Street - Shoeburyness': 
-    // 'Forest Gate Jcn - Barking': 
-    // 'Gospel Oak - Stratford': 
-    // 'Gospel Oak - Woodgrange Park': 
-    // 'Greenford Lines': 
-    // 'Hackney Downs - Cheshunt / Enfield Town': 
-    // 'Heathrow Airport Jcn - Reading': 
-    // 'Hertford Loop': 
-    // 'Inner Windsor Lines': 
-    // 'Kings Cross - Peterborough': 
-    // 'Liverpool Street - Shenfield': 
-    // 'London - Chislehurst': 
-    // 'London Bridge - Windmill Bridge Jcn': 
-    // 'Main Line Suburban Lines': 
-    // 'Marylebone - Aynho Jcn': 
-    // 'Metropolitan Line': 
-    // 'Moorgate Branch': 
-    // 'Paddington - Heathrow Airport Jcn': 
-    // 'Plymouth - Penzance': 
-    // 'Richmond - Willesden Jcn': 
-    // 'South Central Inner Suburban': 
-    // 'South Central Sutton Lines': 
-    // 'St Pancras - Bedford': 
-    // 'Tattenham Corner and Caterham Lines': 
-    // 'Thameslink Routes' : 
-    // 'Tilbury Loop': 
-    // 'Upminster Branch': 
-    // 'Victoria - Windmill Bridge Jcn': 
-    // 'Victoria Lines': 
-    // 'Waterloo - Woking': 
-    // 'West London Line': 
-    // 'Willesden Jcn - Gospel Oak': 
-    // 'Windmill Bridge Jcn - Brighton': 
-     
-
     var select = d3.select('#wardDataSelect');
 
     select
@@ -901,14 +760,18 @@ d3.queue()
     function setColor2(val) {
       var colorRanges = {
         entriesExits: ['orange', 'purple'],
+        tubeEntriesExits: ['orange', 'purple'],
         interChanges: ['orange', 'purple'],
-        allJournies: ['orange', 'purple'],
+        allRailJourneys: ['orange', 'purple'],
         rank: ['orange', 'purple']
 
       };
 
+      console.log('this old stationUsageData', stationUsageData);
+      console.log('this new allStationsgeo Data', allStationsGeoData)
+
       var scale = d3.scaleLinear()
-        .domain([d3.min(stationUsageData, d => d[val]), d3.max(stationUsageData, d => d[val])])
+        .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
         .range(colorRanges[val]);
       
       d3.selectAll('.station')
@@ -917,31 +780,21 @@ d3.queue()
         .ease(d3.easeBackIn)
         .attr('fill', d => {
           var data = d.properties[val];
+          console.log('whats is returning data', data);
+          console.log('whats is returning scale', scale(data));
+
           return data ? scale(data) : '#ccc';
         });  
     }
 
   });
 
-//   Bakerloo: (25) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Central: (49) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Circle: (36) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+
 // Crossrail: (41) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// DLR: (45) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// District: (60) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 // East London: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 // Emirates Air Line: (2) [{…}, {…}]
-// Hammersmith & City: (29) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Jubilee: (27) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// London Overground: (112) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, …]
-// Metropolitan: (38) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Northern: (52) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Piccadilly: (52) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Piccadily: [{…}]
 // TfL Rail: (14) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Tramlink: (39) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Victoria: (16) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Waterloo & City
+
 
 var tooltip = d3.select('body')
   .append('div')
@@ -992,6 +845,7 @@ function showToolTip(d) {
     <p>Name: ${properties.name}</p>
     <p>All Rail Journeys: ${((+properties.railEntriesExits ? +properties.railEntriesExits: 0) + (properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0) + (properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0 ) + (properties.interChanges ? +properties.interChanges : 0)).toLocaleString()}</p>
     <p>Rail: ${(properties.railEntriesExits ? +properties.railEntriesExits : 0).toLocaleString()}</p>
+    <P>All As One: ${(properties.allRailJourneys).toLocaleString()}</p>
     <p>Tube:  ${(properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0).toLocaleString()}</p>
     <p>DLR: ${(properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0).toLocaleString()} </p>
     <p>interChanges: ${(properties.interChanges ? +properties.interChanges : 0).toLocaleString()}</p>
