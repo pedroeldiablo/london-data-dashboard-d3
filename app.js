@@ -116,79 +116,26 @@ d3.queue()
     // console.log('tubeLineRoutes', tubeLineRoutes);
 
     stationsGeoData.forEach(station => {
-
-      if((station.properties.name === 'King\'s Cross St. Pancras') || 
-      (station.properties.name === 'King\'s Cross') ||
-      (station.properties.name === 'St. Pancras'))
-      {
-        console.log('Found one', stations.properties.name);
-        console.log('Found one', stations.properties);
-
-
-      }
-      // console.log('london_stations_topojson stationsGeoData ', station.properties.id);
-      // var stations = allStationsGeoData.filter(d => {
-      //   // console.log('data d', d);
-      //   // return d.properties.nlc_id === +row.NLC;
-      //   return d.properties.id === station.properties.id;
-      // }
-
       var stations = allStationsGeoData.find(d => {
-        // console.log('data d', d);
-        // return d.properties.nlc_id === +row.NLC;
         return d.properties.id === station.properties.id;
       }
         
       );
-      console.log('stations before', stations);
-      // stations.forEach(station1 => {
-      //   // console.log('station before stationUsageData1', station1, station);
-      //   station1.properties = { ...station1.properties, ...station.properties};
-      //   // console.log('station after stationUsageData1', station1.properties.name, station1, station);
-      // });
       if (stations){
         stations.properties = { ...stations.properties, ...station.properties};
-
-        if(stations.properties.name === 'King\'s Cross St. Pancras')
-        {
-          console.log('Found one', stations.properties.name);
-          console.log('Found one', stations.properties);
-
-
-        }
-        // console.log('station after stationUsageData1', station1.properties.name, station1, station);
-      // });
-      console.log('stations after', stations);
-
       }else {
         console.log('station that didn\'t match', station);
       }
-      // stations.forEach(station1 => {
-        // console.log('station before stationUsageData1', station1, station);
-        
-
     })
-
-    // allStationsGeoData.forEach(station => {
-    //   console.log('london_stations_topojson allStationsGeoData ', station.properties.id);
-    // })
-
 
     var orderedTubeLines = [];
 
     tubeLineRoutes.forEach(line => {
-      // console.log('name', line.line);
-      // console.log('branches', line.branches.length);
       var tubeLine = line.branches;
-      
-
       tubeLine.forEach(branch => {
         var numberOfSubbranches = line.branches.length;
         var tubeLineSubBranch = line.branches.indexOf(branch);
 
-
-        // console.log('tubeLineSubBranch', tubeLineSubBranch);
-        // console.log('name', branch);
         branch.forEach(station => {
           var matchingStation = allStationsGeoData.filter(d => d.properties.name === station );
 
@@ -199,152 +146,63 @@ d3.queue()
           station = {station};
 
           station.properties = { ...station, ...matchingStation[0].geometry.coordinates };
-
-          // console.log('...matchingStation[0].geometry.coordinatess', ...matchingStation[0].geometry.coordinates);
-          // console.log('station.properties', station.properties);
-
           var coordinates = matchingStation[0].geometry.coordinates;
 
           if(orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`]){
-            // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
             orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`][0]['geometry']['coordinates'][0].push(coordinates);
-  
           } else {
             orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`] = [];
-            // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
             orderedTubeLines[`${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: `${line.line}-${numberOfSubbranches}-${tubeLineSubBranch}` });
           }
-
-
-          // console.log('stations', station);
           matchingStation.forEach(station => {
-            // console.log('matchingStation', matchingStation);
-            // console.log('matchingStation[0].properties', matchingStation[0].properties);
             matchingStation[0].properties = { ...matchingStation[0].properties, stationOrder:{tubeLineSubBranch} };
-            // console.log('country after', country);
-            // console.log('matchingStation[0].properties', matchingStation[0].properties);
-
             
           });
         }
-        });
-      
+        });  
       });
-
-
     });
-
-    // console.log('orderedTubeLines', orderedTubeLines );
-
-
-
-
-    // console.log('geoData', geoData);
-    //  console.log('stationsGeoData', stationsGeoData);
-
-    // console.log('allStationsGeoData', allStationsGeoData);
-      
-
 
     wardData.forEach(row => {
       var countries = geoData.filter(d => d.id === row.newCode);
       countries.forEach(country => {
-        // console.log('country before', country);
         country.properties = row;
-        // console.log('country after', country);
-      
       });
     });
 
     var STPKXS;
 
     stationUsageData.forEach(row => {
-      // console.log('row', row);
-      
-      // var stations = allStationsGeoData.filter(d => {
-      //   console.log('data d', d);
-      //   // return d.properties.nlc_id === +row.NLC;
-      //   return d.properties.name === row.name;
-      // }
-
+  
       var stations = allStationsGeoData.find(d => {
-        // console.log('data d', d);
-        // return d.properties.nlc_id === +row.NLC;
         return d.properties.name === row.name;
       }
         
       );
 
       if(stations){
-        console.log('stations prior', stations);
         stations.properties = row;
-        console.log('stations', stations);
-
       } else {
-        console.log('stations prior123', row);
         if(row.name === "St.Pancras" || row.name === "King's Cross" ){
-          console.log('STPKXS? Row1', row);
           STPKXS = allStationsGeoData.find(d => {
-            // console.log('STPKXS data d', d.properties.name);
-            // return d.properties.nlc_id === +row.NLC;
-            return d.properties.name === "King's Cross St. Pancras";
-
-            
+            return d.properties.name === "King's Cross St. Pancras"; 
           });
-          console.log('STPKXS? ', STPKXS);
-          console.log('STPKXS? Row2', row);
-
-          // var combinationStation = row.forEach(field => {
-          //   STPKXS.properties[field] = STPKXS.properties[field] + field;
-
-          // });
-
+  
           for (let key in row) {
-            // console.log('row.key', row[key]);
-            // console.log('STPKXS.properties.key', STPKXS.properties.key);
             STPKXS.properties[key] = (STPKXS.properties[key] ? +STPKXS.properties[key] : "") + +row[key];
-            // console.log('row.key', key);
-            // console.log('STPKXS.properties.key', STPKXS.properties.key);
           }
-
-          // console.log('combinationStation', combinationStation);
-          // STPKXS.properties = { ...STPKXS.properties[name], ...STPKXS.properties, ...row};
           STPKXS.properties.name = "King's Cross St. Pancras";
-          console.log('STPKXS? ', STPKXS);
-          
         }
       }
-      // console.log('stations', stations);
-      // stations.forEach(station => {
-        // console.log('station before stationUsageData1', station.properties.name, station);
-       
-        // console.log('station after stationUsageData1', station.properties.name, station);
-      // });
     });
 
     tubeStationUsageData.forEach(row => {
-      // console.log('row', row);
-      
-      // var stations = allStationsGeoData.filter(d => {
-      //   // console.log('data d', d);
-      //   return d.properties.nlc_id === +row.NLC;
-      // }
-
       var stations = allStationsGeoData.find(d => {
-        // console.log('data d', d);
-        // return d.properties.nlc_id === +row.NLC;
         return d.properties.name === row.name;
       }
         
       );
-      // console.log('stations', stations);
-      // stations.forEach(station => {
-      //   // console.log('***station before tubeStationUsageData ', station.properties.name, station);
-      //   // station.properties = row;
-
-      //   station.properties = { ...station.properties, ...row} ;
-      //   // console.log('***station after tubeStationUsageData ', station.properties.name, station);
-      // });
+      
       if(stations){
         stations.properties = { ...stations.properties, ...row};
 
@@ -352,75 +210,31 @@ d3.queue()
         console.log('doesr\t exist', row);
       }
      
-        // console.log('***station before tubeStationUsageData ', station.properties.name, station);
-        // station.properties = row;
-
-        
-        // console.log('***station after tubeStationUsageData ', station.properties.name, station);
-      // });
     });
 
     dlrStationUsageData.forEach(row => {
-      // console.log('row', row);
       
-      // var stations = allStationsGeoData.filter(d => {
-      //   // console.log('data d', d);
-      //   return d.properties.name === row.name;
-      // }
-
       var stations = allStationsGeoData.find(d => {
-        // console.log('data d', d);
         return d.properties.name === row.name;
       }
         
       );
-      // console.log('stations', stations);
-      // stations.forEach(station => {
-      //   // console.log('station before', station);
-      //   // station.properties = row;
-      //   // console.log('***station before dlrStationUsageData ', station.properties.name, station);
-      //   // station.properties = row;
-
-      //   station.properties = { ...station.properties, ...row} ;
-      //   // console.log('***station after dlrStationUsageData ', station.properties.name, station);
-      // });
       if(stations){
-        // console.log('station before', station);
-        // station.properties = row;
-        // console.log('***station before dlrStationUsageData ', station.properties.name, station);
-        // station.properties = row;
-
+        
         stations.properties = { ...stations.properties, ...row} ;
-        // console.log('***station after dlrStationUsageData ', station.properties.name, station);
       } else{
         console.log('this ain\'t there', row);
       };
     });
-
-    // allStationsGeoData.forEach(row => {
-      
-    //   var stations = stationUsageData.filter(d => 
-    //     +d.NLC === row.properties.nlc_id
-    //   );
-
-    //   stations.forEach(station => {
-    //     console.log('station before', station);
-    //     station.properties = row;
-    //     console.log('station after', station);
-    //   });
-    // });
 
     allStationsGeoData.forEach(station => {
       station.properties.allRailJourneys = (station.properties.entriesExits ?  +station.properties.entriesExits : 0 ) 
       +  (station.properties.interChanges ? +station.properties.interChanges : 0) 
       + (station.properties.tubeEntriesExits ? +station.properties.tubeEntriesExits : 0 )
       + (station.properties.dlrEntriesExits ? +station.properties.dlrEntriesExits : 0 );
-      
-      console.log('station all journeys', station)
-    
     });
 
-    let stationOrder = []
+    let stationOrder = [];
 
     allStationsGeoData.forEach(station => {
       var passengers = station.properties.allRailJourneys;
@@ -428,44 +242,60 @@ d3.queue()
     
     });
 
-    console.log('stationOrder', stationOrder);
-
     stationOrder.sort(function(a, b){return b - a});
 
-    console.log('stationOrder', stationOrder);
+    console.log(stationOrder);
 
     allStationsGeoData.forEach(station => {
       var passengers = station.properties.allRailJourneys;
       station.properties.journeyRank = 1 + stationOrder.indexOf(passengers);
     })
 
+    var meanUsage = (stationOrder.reduce(sumArray)) / stationOrder.length;
+    var totalUsage = (stationOrder.reduce(sumArray));
+    var medianUsage = stationOrder[(stationOrder.length /2)];
 
+    console.log(totalUsage);
+    console.log(meanUsage);
+    console.log(medianUsage);
+
+    var rankedStationArray = [];
+
+    stationOrder.forEach(station => {
+      var rankedStation = allStationsGeoData.filter(d => d.properties.allRailJourneys === station);
+      // console.log(rankedStation);
+      rankedStationArray.push(`${rankedStation[0].properties.name} ${station}`);
+    });
+
+    console.log(rankedStationArray);
+
+
+    var combinedLondon =rankedStationArray.reduce(sumArray);
+
+    function sumArray(total, num) {
+      return total + num;
+    } 
+
+    console.log('combinedLondon', combinedLondon);
 
     var tubeLines = [];
-    // console.log('stationsGeoData',stationsGeoData);
-  
+
     stationsGeoData.forEach(station => {
-      // console.log(station);
       var id = station.properties.id;
       var lines = station.properties.lines;
       var coordinates = station.geometry.coordinates;
-      // console.log(lines, id);
+
       lines.forEach(line => {
-        // console.log(line);
         var lineName = line.name; 
         if(tubeLines[`${lineName}`]){
-          // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
           tubeLines[`${lineName}`][0]['geometry']['coordinates'][0].push(coordinates);
 
         } else {
           tubeLines[`${lineName}`] = [];
-          // tubeLines[`${lineName}`].push({'geometry': {'coordinates': coordinates, type: 'MultiPolygon'}, type: 'Feature'});
           tubeLines[`${lineName}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: lineName });
         }
       });
     });
-
-    // console.log('tubeLines', tubeLines);
 
     // TODO filter routes or descriptions and link visually 
 
@@ -495,12 +325,7 @@ d3.queue()
     var tubeRoutes = Object.keys(tubeLines);
     var orderedTubeRoutes = Object.keys(orderedTubeLines); 
 
-    // console.log('orderedTubeRoutes', orderedTubeRoutes);
-
-    // console.log('lineRoutes', lineRoutes);
-
     function makeLine(linesGeoData) {
-      // console.log('make lines with linesGeoData', linesGeoData);
       var width = 3200;
       var height = 2400;
 
@@ -512,10 +337,6 @@ d3.queue()
       var path = d3.geoPath()
         .projection(projection);
         
-      // debugger;
-
-      // console.log('what are you? linesGeoData[0].id', linesGeoData[0].id)
-
       var id = linesGeoData[0].id.replace(/[/ !@#$%^&*()]/g, '');
 
       // console.log(id);
@@ -609,8 +430,6 @@ d3.queue()
     var path2 = d3.geoPath()
       .projection(projection2);
 
-    console.log('Looking for this allStationsGeoData', allStationsGeoData);
-
     d3.select('#map')
       .attr('width', width)
       .attr('height', height)
@@ -634,8 +453,8 @@ d3.queue()
       .append('path')
       .classed('station', true)
       .attr('d', path2)
+      .attr('r', '15')
       // .style('fill', 'lavenderblush')
-      .attr('r', '50')
       .on('mousemove', showToolTip)
       .on('touchStart', showToolTip)
       .on('mouseout', hideToolTip)
@@ -790,9 +609,6 @@ d3.queue()
 
       };
 
-      console.log('this old stationUsageData', stationUsageData);
-      console.log('this new allStationsgeo Data', allStationsGeoData)
-
       var scale = d3.scaleLinear()
         .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
         .range(colorRanges[val]);
@@ -804,9 +620,6 @@ d3.queue()
         .ease(d3.easeBackIn)
         .attr('fill', d => {
           var data = d.properties[val];
-          console.log('whats is returning data', data);
-          console.log('whats is returning scale', scale(data));
-
           return data ? scale(data) : '#ccc';
         });  
     }
