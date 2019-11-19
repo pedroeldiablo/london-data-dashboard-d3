@@ -321,6 +321,39 @@ d3.queue()
       
     });
 
+    var width = 3200;
+    var height = 2400;
+
+    var projection = d3.geoMercator()
+      .center([0.3848, 51.5074])
+      .scale(180000)
+      .translate([width, height/2]);
+
+    var projection2 = d3.geoMercator()
+      .center([0.3848, 51.5074])
+      .scale(180000)
+      .translate([width, height/2]);
+
+    var path = d3.geoPath()
+      .projection(projection);
+    
+    var path2 = d3.geoPath()
+      .projection(projection2);
+
+    d3.select('#map')
+      .attr('width', width)
+      .attr('height', height)
+      .selectAll('.country')
+      .data(geoData)
+      .enter()
+      .append('path')
+      .classed('country', true)
+      .attr('d', path)
+      .on('mousemove', showToolTip)
+      .on('touchStart', showToolTip)
+      .on('mouseout', hideToolTip)
+      .on('touchEnd', hideToolTip);
+
     var lineRoutes = Object.keys(trainRoute);
     var tubeRoutes = Object.keys(tubeLines);
     var orderedTubeRoutes = Object.keys(orderedTubeLines); 
@@ -362,7 +395,7 @@ d3.queue()
           noBranches = parseFloat(noBranches);
           // console.log('noBranches', id, noBranches);
           // console.log('opacity', id, 1 / noBranches );
-          return 1 / (1 + noBranches);
+          return 1 / noBranches;
 
         })
         .attr('stroke', d => {
@@ -411,54 +444,23 @@ d3.queue()
       
     });
 
-    var width = 3200;
-    var height = 2400;
-
-    var projection = d3.geoMercator()
-      .center([0.3848, 51.5074])
-      .scale(180000)
-      .translate([width, height/2]);
-
-    var projection2 = d3.geoMercator()
-      .center([0.3848, 51.5074])
-      .scale(180000)
-      .translate([width, height/2]);
-
-    var path = d3.geoPath()
-      .projection(projection);
-    
-    var path2 = d3.geoPath()
-      .projection(projection2);
-
     d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
-      .selectAll('.country')
-      .data(geoData)
-      .enter()
-      .append('path')
-      .classed('country', true)
-      .attr('d', path);
-      // .on('mousemove', showToolTip)
-      // .on('touchStart', showToolTip)
-      // .on('mouseout', hideToolTip)
-      // .on('touchEnd', hideToolTip);
+    .attr('width', width)
+    .attr('height', height)
+    .selectAll('.station')
+    .data(allStationsGeoData)
+    .enter()
+    .append('path')
+    .classed('station', true)
+    .attr('d', path2)
+    .attr('r', '15')
+    // .style('fill', 'lavenderblush')
+    .on('mousemove', showToolTip)
+    .on('touchStart', showToolTip)
+    .on('mouseout', hideToolTip)
+    .on('touchEnd', hideToolTip);
 
-    d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
-      .selectAll('.station')
-      .data(allStationsGeoData)
-      .enter()
-      .append('path')
-      .classed('station', true)
-      .attr('d', path2)
-      .attr('r', '15')
-      // .style('fill', 'lavenderblush')
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+
 
     
     // d3.select('#map')
@@ -554,7 +556,7 @@ d3.queue()
 
     function setColor(val) {
       var colorRanges = {
-        population: ['pink', 'mediumseagreen'],
+        population: ['deeppink', 'white'],
         density: ['pink', 'mediumseagreen'],
         openSpace: ['pink', 'mediumseagreen'],
         trueDensity: ['pink', 'mediumseagreen'],
@@ -620,7 +622,7 @@ d3.queue()
         .ease(d3.easeBackIn)
         .attr('fill', d => {
           var data = d.properties[val];
-          return data ? scale(data) : '#ccc';
+          return data ? scale(data) : '#fff';
         });  
     }
 
@@ -637,38 +639,38 @@ var tooltip = d3.select('body')
   .append('div')
   .classed('tooltip', true);
 
-// function showToolTip(d) {
-//   console.log(d);
-//   var properties = d.properties;
-//   tooltip
-//     .style('opacity', 1)
-//     // .style('left', d3.event.x - (tooltip.node().offsetWidth /2) + 'px')
-//     // .style('top', d3.event.y + 25 + 'px')
+function showToolTip(d) {
+  console.log(d);
+  var properties = d.properties;
+  tooltip
+    .style('opacity', 1)
+    // .style('left', d3.event.x - (tooltip.node().offsetWidth /2) + 'px')
+    // .style('top', d3.event.y + 25 + 'px')
 
-//     .html(`
-//         <p>${properties.wardName}</p>
-//         <p>Population: ${properties.population}</p>
-//         <p>Area: ${properties.area} km2</p>
-//         <p>Open Space: ${properties.openSpace}%</p>
-//         <p>density: ${properties.density}</p>
-//         <p>hiddenDensity: ${properties.hiddenDensity}</p>
-//         <p>openSpace: ${properties.openSpace}</p>
-//         <p>availableArea: ${properties.availableArea} km2</p>
-//         <p>trueDensity: ${properties.trueDensity} per/km2</p>
-//         <p>jobs: ${properties.jobs}</p>
-//          <p>jobsDensity: ${properties.jobsDensity}</p>
-//         <p>Working age: ${properties.workingAge}</p>
-//         <p>Net Employment: ${properties.netEmployment}</p>
-//         <p>publicTransport: ${properties.publicTransport}</p>
-//         <p>transportJobs: ${properties.transportJobs}</p>
-//         <p>transportInvestmentImpact: ${properties.transportInvestmentImpact}</p>
-//       `);  
-// }
+    .html(`
+        <p>${properties.wardName}</p>
+        <p>Population: ${properties.population}</p>
+        <p>Area: ${properties.area} km2</p>
+        <p>Open Space: ${properties.openSpace}%</p>
+        <p>density: ${properties.density}</p>
+        <p>hiddenDensity: ${properties.hiddenDensity}</p>
+        <p>openSpace: ${properties.openSpace}</p>
+        <p>availableArea: ${properties.availableArea} km2</p>
+        <p>trueDensity: ${properties.trueDensity} per/km2</p>
+        <p>jobs: ${properties.jobs}</p>
+         <p>jobsDensity: ${properties.jobsDensity}</p>
+        <p>Working age: ${properties.workingAge}</p>
+        <p>Net Employment: ${properties.netEmployment}</p>
+        <p>publicTransport: ${properties.publicTransport}</p>
+        <p>transportJobs: ${properties.transportJobs}</p>
+        <p>transportInvestmentImpact: ${properties.transportInvestmentImpact}</p>
+      `);  
+}
   
-// function hideToolTip() {
-//   tooltip
-//     .style('opacity', 0);
-// }
+function hideToolTip() {
+  tooltip
+    .style('opacity', 0);
+}
 
 function showToolTip(d) {
   console.log(d);
