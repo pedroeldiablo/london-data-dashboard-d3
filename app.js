@@ -349,10 +349,10 @@ d3.queue()
       .append('path')
       .classed('country', true)
       .attr('d', path)
-      .on('mousemove', showToolTip)
-      .on('touchStart', showToolTip)
-      .on('mouseout', hideToolTip)
-      .on('touchEnd', hideToolTip);
+      .on('mousemove', showToolTip2)
+      .on('touchStart', showToolTip2)
+      .on('mouseout', hideToolTip2)
+      .on('touchEnd', hideToolTip2);
 
     var lineRoutes = Object.keys(trainRoute);
     var tubeRoutes = Object.keys(tubeLines);
@@ -639,7 +639,7 @@ var tooltip = d3.select('body')
   .append('div')
   .classed('tooltip', true);
 
-function showToolTip(d) {
+function showToolTip2(d) {
   console.log(d);
   var properties = d.properties;
   tooltip
@@ -667,7 +667,7 @@ function showToolTip(d) {
       `);  
 }
   
-function hideToolTip() {
+function hideToolTip2() {
   tooltip
     .style('opacity', 0);
 }
