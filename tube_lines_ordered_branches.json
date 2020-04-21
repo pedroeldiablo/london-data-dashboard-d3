@@ -361,7 +361,7 @@
             "line": "Hammersmith & City",
             "branches" : [
                 [
-                    "Hammersmith",
+                    "Hammersmith (H&C)",
                     "Goldhawk Road",
                     "Shepherd's Bush Market",
                     "Wood Lane",
@@ -422,14 +422,14 @@
                     "Wood Lane",
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
-                    "Hammersmith"
+                    "Hammersmith (H&C)"
                 ]  
             ]
         },{
             "line": "Circle",
             "branches" : [
                 [
-                    "Hammersmith",
+                    "Hammersmith (H&C)",
                     "Goldhawk Road",
                     "Shepherd's Bush Market",
                     "Wood Lane",
@@ -500,7 +500,7 @@
                     "Wood Lane",
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
-                    "Hammersmith"
+                    "Hammersmith (H&C)"
                 ]  
             ]
         },{
@@ -542,7 +542,7 @@
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Ravenscourt Park",
                     "Stamford Brook",
                     "Turnham Green",
@@ -555,7 +555,7 @@
                     "Turnham Green",
                     "Stamford Brook",
                     "Ravenscourt Park",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
@@ -627,7 +627,7 @@
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Ravenscourt Park",
                     "Stamford Brook",
                     "Turnham Green",
@@ -642,7 +642,7 @@
                     "Turnham Green",
                     "Stamford Brook",
                     "Ravenscourt Park",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
@@ -843,7 +843,7 @@
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Ravenscourt Park",
                     "Stamford Brook",
                     "Turnham Green",
@@ -856,7 +856,7 @@
                     "Turnham Green",
                     "Stamford Brook",
                     "Ravenscourt Park",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
@@ -874,7 +874,7 @@
                     "Earl's Court",
                     "West Kensington",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Ravenscourt Park",
                     "Stamford Brook",
                     "Turnham Green",
@@ -889,7 +889,7 @@
                     "Turnham Green",
                     "Stamford Brook",
                     "Ravenscourt Park",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "West Kensington",
                     "Earl's Court",
@@ -1417,7 +1417,7 @@
                     "Gloucester Road",
                     "Earl's Court",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Acton Town",
                     "South Ealing",
                     "Northfields",
@@ -1442,7 +1442,7 @@
                     "Northfields",
                     "South Ealing",
                     "Acton Town",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "Earl's Court",
                     "Gloucester Road",
@@ -1494,7 +1494,7 @@
                     "Gloucester Road",
                     "Earl's Court",
                     "Barons Court",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Acton Town",
                     "Ealing Common",
                     "North Ealing",
@@ -1513,7 +1513,7 @@
                     "North Ealing",
                     "Ealing Common",
                     "Acton Town",
-                    "Hammersmith",
+                    "Hammersmith (Dis)",
                     "Barons Court",
                     "Earl's Court",
                     "Gloucester Road",
