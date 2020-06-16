@@ -1,0 +1,254 @@
+{
+    "london_rail": [{
+            "terminus": "Blackfriars",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Cannon Street",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Charring Cross",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Euston",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Fenchurch Street",
+            "branches": [
+                []
+            ]
+        },
+
+        {
+            "terminus": "King's Cross",
+            "branches": [
+                [
+                    [
+                        "King's Cross",
+                        "Finsbury Park",
+                        "Harringay",
+                        "Hornsey",
+                        "Alexandra Palace",
+                        "New Southgate",
+                        "Oakleigh Park",
+                        "New Barnet",
+                        "Hadley Wood",
+                        "Potters Bar",
+                        "...Welwyn Garden City or Cambridge"
+                    ],
+                    [
+                        "King's Cross",
+                        "Finsbury Park",
+                        "Harringay",
+                        "Hornsey",
+                        "Alexandra Palace",
+                        "New Southgate",
+                        "Oakleigh Park",
+                        "New Barnet",
+                        "Hadley Wood",
+                        "Potters Bar",
+                        "...Welwyn Garden City or Cambridge"
+                    ]
+                ]
+            ]
+        },
+        {
+            "terminus": "Liverpool Street",
+            "branches": [
+                [
+                    "Liverpool Street",
+                    "Stratford",
+                    "...Essex, Suffolk and Norfolk"
+                ],
+                [
+                    "Liverpool Street",
+                    "Stratford",
+                    "Romford",
+                    "...Colchester"
+                ]
+            ]
+        }, {
+            "terminus": "London Bridge",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Marylebone",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Moorgate",
+            "branches": [
+                [
+                    "Old Street",
+                    "Essex Road",
+                    "Highbury & Islington",
+                    "Drayton Park",
+                    "Finsbury Park",
+                    "Harringay",
+                    "Hornsey",
+                    "Alexandra Palace",
+                    "Bowes Park",
+                    "Palmers Green",
+                    "Winchmore Hill",
+                    "Grange Park",
+                    "Enfield Chase",
+                    "Gordon Hill",
+                    "Crews Hill",
+                    "...Hertford North"
+                ],
+                [
+                    "Old Street",
+                    "Essex Road",
+                    "Highbury & Islington",
+                    "Drayton Park",
+                    "Finsbury Park",
+                    "Harringay",
+                    "Hornsey",
+                    "Alexandra Palace",
+                    "New Southgate",
+                    "Oakleigh Park",
+                    "New Barnet",
+                    "Hadley Wood",
+                    "Potters Bar",
+                    "...Welwyn Garden City or Cambridge"
+                ]
+            ]
+        },
+        {
+            "terminus": "Paddington",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "St Pancras",
+            "branches": [
+                []
+            ]
+        },
+        {
+            "terminus": "Victoria",
+            "branches": [
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Streatham Hill",
+                    "West Norwood",
+                    "Gipsy Hill",
+                    "Crystal Palace",
+                    "Birkbeck",
+                    "Beckenham Junction"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Streatham Common",
+                    "Norbury",
+                    "Thornton Health",
+                    "Selhurst",
+                    "East Croydon",
+                    "South Croydon",
+                    "Sanderstead",
+                    "Riddlesdown",
+                    "Upper Warlingham",
+                    "...Uckfield"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Mitcham Eastfields",
+                    "Mitcham Junction",
+                    "Hackbridge",
+                    "Carshalton",
+                    "Sutton",
+                    "Cheam",
+                    "Ewell East",
+                    "Epsom",
+                    "...Horsham"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Mitcham Eastfields",
+                    "Mitcham Junction",
+                    "Hackbridge",
+                    "Carshalton",
+                    "Sutton",
+                    "Cheam",
+                    "Ewell East",
+                    "Epsom",
+                    "...Guildford"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Mitcham Eastfields",
+                    "Mitcham Junction",
+                    "Hackbridge",
+                    "Carshalton",
+                    "Sutton",
+                    "Belmont",
+                    "Banstead",
+                    "Epsom Downs"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Mitcham Eastfields",
+                    "Mitcham Junction",
+                    "Hackbridge",
+                    "Carshalton",
+                    "Sutton",
+                    "Cheam",
+                    "Ewell East"
+                ],
+                [
+                    "Battersea Park",
+                    "Clapham Junction",
+                    "Wandsworth Common",
+                    "Balham",
+                    "Mitcham Eastfields",
+                    "Mitcham Junction",
+                    "Hackbridge",
+                    "Carshalton",
+                    "Sutton",
+                    "Cheam",
+                    "Ewell East"
+                ]
+            ]
+        },
+        {
+            "terminus": "Waterloo",
+            "branches": [
+                []
+            ]
+        }
+    ]
+}
