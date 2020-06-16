@@ -1,8 +1,7 @@
 {
-    "london_underground" :[
-        {
+    "london_underground": [{
             "line": "Bakerloo",
-            "branches" : [
+            "branches": [
                 [
                     "Elephant & Castle",
                     "Lambeth North",
@@ -56,9 +55,9 @@
                     "Elephant & Castle"
                 ]
             ]
-        },{
+        }, {
             "line": "Central",
-            "branches" : [
+            "branches": [
                 [
                     "Epping",
                     "Theydon Bois",
@@ -133,7 +132,8 @@
                     "Debden",
                     "Theydon Bois",
                     "Epping"
-                ],[
+                ],
+                [
                     "Epping",
                     "Theydon Bois",
                     "Debden",
@@ -198,7 +198,8 @@
                     "Debden",
                     "Theydon Bois",
                     "Epping"
-                ],[
+                ],
+                [
                     "Woodford",
                     "Roding Valley",
                     "Chigwell",
@@ -271,7 +272,8 @@
                     "Chigwell",
                     "Roding Valley",
                     "Woodford"
-                ],[
+                ],
+                [
                     "Woodford",
                     "Roding Valley",
                     "Chigwell",
@@ -357,9 +359,9 @@
 
                 ]
             ]
-        },{
+        }, {
             "line": "Hammersmith & City",
-            "branches" : [
+            "branches": [
                 [
                     "Hammersmith (H&C)",
                     "Goldhawk Road",
@@ -423,11 +425,11 @@
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith (H&C)"
-                ]  
+                ]
             ]
-        },{
+        }, {
             "line": "Circle",
-            "branches" : [
+            "branches": [
                 [
                     "Hammersmith (H&C)",
                     "Goldhawk Road",
@@ -501,11 +503,11 @@
                     "Shepherd's Bush Market",
                     "Goldhawk Road",
                     "Hammersmith (H&C)"
-                ]  
+                ]
             ]
-        },{
+        }, {
             "line": " District",
-            "branches" : [
+            "branches": [
                 [
                     "Upminster",
                     "Upminster Bridge",
@@ -591,7 +593,8 @@
                     "Hornchurch",
                     "Upminster Bridge",
                     "Upminster"
-                ],[
+                ],
+                [
                     "Upminster",
                     "Upminster Bridge",
                     "Hornchurch",
@@ -679,7 +682,8 @@
                     "Upminster Bridge",
                     "Upminster"
 
-                ],[
+                ],
+                [
                     "Upminster",
                     "Upminster Bridge",
                     "Hornchurch",
@@ -833,8 +837,8 @@
                     "Hornchurch",
                     "Upminster Bridge",
                     "Upminster"
-                ]
-                ,[
+                ],
+                [
                     "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
@@ -865,7 +869,8 @@
                     "Bayswater",
                     "Paddington",
                     "Edgware Road (Cir)"
-                ],[
+                ],
+                [
                     "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
@@ -898,7 +903,8 @@
                     "Bayswater",
                     "Paddington",
                     "Edgware Road (Cir)"
-                ],[
+                ],
+                [
                     "Edgware Road (Cir)",
                     "Paddington",
                     "Bayswater",
@@ -913,7 +919,8 @@
                     "Bayswater",
                     "Paddington",
                     "Edgware Road (Cir)"
-                ],[
+                ],
+                [
                     "Edgware Road (Cir)",
                     "Bayswater",
                     "Notting Hill Gate",
@@ -943,9 +950,9 @@
                     "Edgware Road (Cir)"
                 ]
             ]
-        },{
+        }, {
             "line": "Jubilee",
-            "branches" : [
+            "branches": [
                 [
                     "Stanmore",
                     "Canons Park",
@@ -1000,13 +1007,13 @@
                     "Kingsbury",
                     "Queensbury",
                     "Canons Park",
-                    "Stanmore"                    
-                ]  
+                    "Stanmore"
+                ]
             ]
         },
         {
             "line": "Metropolitan",
-            "branches" : [
+            "branches": [
                 [
                     "Aldgate",
                     "Liverpool Street",
@@ -1052,7 +1059,8 @@
                     "Moorgate",
                     "Liverpool Street",
                     "Aldgate"
-                ],[
+                ],
+                [
                     "Aldgate",
                     "Liverpool Street",
                     "Moorgate",
@@ -1100,7 +1108,8 @@
                     "Liverpool Street",
                     "Aldgate"
 
-                ] ,[
+                ],
+                [
                     "Aldgate",
                     "Liverpool Street",
                     "Moorgate",
@@ -1148,7 +1157,8 @@
                     "Liverpool Street",
                     "Aldgate"
 
-                ],[
+                ],
+                [
                     "Aldgate",
                     "Liverpool Street",
                     "Moorgate",
@@ -1194,9 +1204,9 @@
 
                 ]
             ]
-        },{
+        }, {
             "line": "Northern_Bank",
-            "branches" : [
+            "branches": [
                 [
                     "Morden",
                     "South Wimbledon",
@@ -1260,7 +1270,8 @@
                     "Colliers Wood",
                     "South Wimbledon",
                     "Morden"
-                ],[
+                ],
+                [
                     "Morden",
                     "South Wimbledon",
                     "Colliers Wood",
@@ -1319,9 +1330,9 @@
                     "Morden"
                 ]
             ]
-        },{
+        }, {
             "line": "Northern_Charing Cross",
-            "branches" : [
+            "branches": [
                 [
                     "Morden",
                     "South Wimbledon",
@@ -1387,10 +1398,10 @@
                     "Morden"
                 ]
             ]
-        },{
+        }, {
 
             "line": "Piccadilly",
-            "branches" : [
+            "branches": [
                 [
                     "Cockfosters",
                     "Oakwood",
@@ -1468,7 +1479,8 @@
                     "Southgate",
                     "Oakwood",
                     "Cockfosters"
-                ] ,[
+                ],
+                [
                     "Cockfosters",
                     "Oakwood",
                     "Southgate",
@@ -1541,9 +1553,9 @@
                     "Cockfosters"
                 ]
             ]
-        },{
+        }, {
             "line": "Victoria",
-            "branches" : [
+            "branches": [
                 [
                     "Brixton",
                     "Stockwell",
@@ -1577,22 +1589,22 @@
                     "Vauxhall",
                     "Stockwell",
                     "Brixton"
-                ]  
+                ]
             ]
-        },{
+        }, {
             "line": "Waterloo & City",
-            "branches" : [
+            "branches": [
                 [
                     "Waterloo",
                     "Bank",
                     "Bank",
                     "Waterloo"
-                    
-                ]  
+
+                ]
             ]
         }, {
             "line": "Crossrail",
-            "branches" : [
+            "branches": [
                 [
                     "Reading",
                     "Twyford",
@@ -1624,14 +1636,14 @@
                     "Goodmayes",
                     "Chadwell Heath",
                     "Romford",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Harold Wood",
                     "Brentwood",
                     "Shenfield",
                     "Shenfield",
                     "Brentwood",
                     "Harold Wood",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Romford",
                     "Chadwell Heath",
                     "Goodmayes",
@@ -1661,7 +1673,7 @@
                     "Taplow",
                     "Maidenhead",
                     "Twyford",
-                    "Reading"                
+                    "Reading"
                 ],
                 [
                     "Reading",
@@ -1713,11 +1725,11 @@
                     "Taplow",
                     "Maidenhead",
                     "Twyford",
-                    "Reading"                
+                    "Reading"
                 ],
                 [
                     "Heathrow Terminal 5",
-                    "Heathrow Terminals 1, 2 & 3",   
+                    "Heathrow Terminals 1, 2 & 3",
                     "Hayes & Harlington",
                     "Southall",
                     "Hanwell",
@@ -1750,12 +1762,12 @@
                     "Hanwell",
                     "Southall",
                     "Hayes & Harlington",
-                    "Heathrow Terminals 1, 2 & 3",   
-                    "Heathrow Terminal 5"      
+                    "Heathrow Terminals 1, 2 & 3",
+                    "Heathrow Terminal 5"
                 ],
                 [
                     "HeathrowTerminal 5",
-                    "Heathrow Terminals 1, 2 & 3",   
+                    "Heathrow Terminals 1, 2 & 3",
                     "Hayes & Harlington",
                     "Southall",
                     "Hanwell",
@@ -1777,14 +1789,14 @@
                     "Goodmayes",
                     "Chadwell Heath",
                     "Romford",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Harold Wood",
                     "Brentwood",
                     "Shenfield",
                     "Shenfield",
                     "Brentwood",
                     "Harold Wood",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Romford",
                     "Chadwell Heath",
                     "Goodmayes",
@@ -1806,12 +1818,12 @@
                     "Hanwell",
                     "Southall",
                     "Hayes & Harlington",
-                    "Heathrow Terminals 1, 2 & 3",   
-                    "Heathrow Terminal 5"               
+                    "Heathrow Terminals 1, 2 & 3",
+                    "Heathrow Terminal 5"
                 ],
                 [
                     "Heathrow Terminal 4",
-                    "Heathrow Terminals 1, 2 & 3",   
+                    "Heathrow Terminals 1, 2 & 3",
                     "Hayes & Harlington",
                     "Southall",
                     "Hanwell",
@@ -1844,12 +1856,12 @@
                     "Hanwell",
                     "Southall",
                     "Hayes & Harlington",
-                    "Heathrow Terminals 1, 2 & 3",   
-                    "Heathrow Terminal 4"      
+                    "Heathrow Terminals 1, 2 & 3",
+                    "Heathrow Terminal 4"
                 ],
                 [
                     "HeathrowTerminal 4",
-                    "Heathrow Terminals 1, 2 & 3",   
+                    "Heathrow Terminals 1, 2 & 3",
                     "Hayes & Harlington",
                     "Southall",
                     "Hanwell",
@@ -1871,14 +1883,14 @@
                     "Goodmayes",
                     "Chadwell Heath",
                     "Romford",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Harold Wood",
                     "Brentwood",
                     "Shenfield",
                     "Shenfield",
                     "Brentwood",
                     "Harold Wood",
-                    "Gildea Park",
+                    "Gidea Park",
                     "Romford",
                     "Chadwell Heath",
                     "Goodmayes",
@@ -1900,177 +1912,180 @@
                     "Hanwell",
                     "Southall",
                     "Hayes & Harlington",
-                    "Heathrow Terminals 1, 2 & 3",   
-                    "Heathrow Terminal 4"               
+                    "Heathrow Terminals 1, 2 & 3",
+                    "Heathrow Terminal 4"
                 ]
-                
+
             ]
-        },{
+        }, {
             "line": "London Overground_East London & South London lines",
             "branches": [
                 [
-                "Dalston Junction",
-                "Haggerston", 
-                "Hoxton", 
-                "Shoreditch High Street", 
-                "Whitechapel", 
-                "Shadwell", 
-                "Wapping", 
-                "Rotherhithe", 
-                "Canada Water", 
-                "Surrey Quays", 
-                "New Cross",
-                "New Cross",
-                "Surrey Quays",
-                "Canada Water",
-                "Rotherhithe",
-                "Wapping",
-                "Shadwell",
-                "Whitechapel",
-                "Shoreditch High Street",
-                "Hoxton",
-                "Haggerston",
-                "Dalston Junction"
-            ],[
-                "Dalston Junction",
-                "Haggerston", 
-                "Hoxton", 
-                "Shoreditch High Street", 
-                "Whitechapel", 
-                "Shadwell", 
-                "Wapping", 
-                "Rotherhithe", 
-                "Canada Water", 
-                "Surrey Quays", 
-                "Queens Road Peckham", 
-                "Peckham Rye", 
-                "Denmark Hill", 
-                "Clapham High Street", 
-                "Wandsworth Road",
-                "Clapham Junction",
-                "Clapham Junction",
-                "Wandsworth Road",
-                "Clapham High Street",
-                "Denmark Hill",
-                "Peckham Rye",
-                "Queens Road Peckham",
-                "Surrey Quays",
-                "Canada Water",
-                "Rotherhithe",
-                "Wapping",
-                "Shadwell",
-                "Whitechapel",
-                "Shoreditch High Street",
-                "Hoxton",
-                "Haggerston",
-                "Dalston Junction"
-            ],[
-                "Highbury & Islington",
-                "Canonbury",
-                "Dalston Junction",
-                "Haggerston", 
-                "Hoxton", 
-                "Shoreditch High Street", 
-                "Whitechapel", 
-                "Shadwell", 
-                "Wapping", 
-                "Rotherhithe", 
-                "Canada Water", 
-                "Surrey Quays", 
-                "New Cross Gate", 
-                "Brockley", 
-                "Honor Oak Park", 
-                "Forest Hill", 
-                "Sydenham",  
-                "Crystal Palace",
-                "Crystal Palace",
-                "Sydenham",
-                "Forest Hill",
-                "Honor Oak Park",
-                "Brockley",
-                "New Cross Gate",
-                "Surrey Quays",
-                "Canada Water",
-                "Rotherhithe",
-                "Wapping",
-                "Shadwell",
-                "Whitechapel",
-                "Shoreditch High Street",
-                "Hoxton",
-                "Haggerston",
-                "Dalston Junction",
-                "Canonbury",
-                "Highbury & Islington"
-            ],[
-                "Highbury & Islington",
-                "Canonbury",
-                "Dalston Junction",
-                "Haggerston", 
-                "Hoxton", 
-                "Shoreditch High Street", 
-                "Whitechapel", 
-                "Shadwell", 
-                "Wapping", 
-                "Rotherhithe", 
-                "Canada Water", 
-                "Surrey Quays", 
-                "New Cross Gate", 
-                "Brockley", 
-                "Honor Oak Park", 
-                "Forest Hill", 
-                "Sydenham", 
-                "Penge West", 
-                "Anerley", 
-                "Norwood Junction",
-                "West Croydon",
-                "West Croydon",
-                "Norwood Junction",
-                "Anerley",
-                "Penge West",
-                "Sydenham",
-                "Forest Hill",
-                "Honor Oak Park",
-                "Brockley",
-                "New Cross Gate",
-                "Surrey Quays",
-                "Canada Water",
-                "Rotherhithe",
-                "Wapping",
-                "Shadwell",
-                "Whitechapel",
-                "Shoreditch High Street",
-                "Hoxton",
-                "Haggerston",
-                "Dalston Junction",
-                "Canonbury",
-                "Highbury & Islington"
+                    "Dalston Junction",
+                    "Haggerston",
+                    "Hoxton",
+                    "Shoreditch High Street",
+                    "Whitechapel",
+                    "Shadwell",
+                    "Wapping",
+                    "Rotherhithe",
+                    "Canada Water",
+                    "Surrey Quays",
+                    "New Cross",
+                    "New Cross",
+                    "Surrey Quays",
+                    "Canada Water",
+                    "Rotherhithe",
+                    "Wapping",
+                    "Shadwell",
+                    "Whitechapel",
+                    "Shoreditch High Street",
+                    "Hoxton",
+                    "Haggerston",
+                    "Dalston Junction"
+                ],
+                [
+                    "Dalston Junction",
+                    "Haggerston",
+                    "Hoxton",
+                    "Shoreditch High Street",
+                    "Whitechapel",
+                    "Shadwell",
+                    "Wapping",
+                    "Rotherhithe",
+                    "Canada Water",
+                    "Surrey Quays",
+                    "Queens Road Peckham",
+                    "Peckham Rye",
+                    "Denmark Hill",
+                    "Clapham High Street",
+                    "Wandsworth Road",
+                    "Clapham Junction",
+                    "Clapham Junction",
+                    "Wandsworth Road",
+                    "Clapham High Street",
+                    "Denmark Hill",
+                    "Peckham Rye",
+                    "Queens Road Peckham",
+                    "Surrey Quays",
+                    "Canada Water",
+                    "Rotherhithe",
+                    "Wapping",
+                    "Shadwell",
+                    "Whitechapel",
+                    "Shoreditch High Street",
+                    "Hoxton",
+                    "Haggerston",
+                    "Dalston Junction"
+                ],
+                [
+                    "Highbury & Islington",
+                    "Canonbury",
+                    "Dalston Junction",
+                    "Haggerston",
+                    "Hoxton",
+                    "Shoreditch High Street",
+                    "Whitechapel",
+                    "Shadwell",
+                    "Wapping",
+                    "Rotherhithe",
+                    "Canada Water",
+                    "Surrey Quays",
+                    "New Cross Gate",
+                    "Brockley",
+                    "Honor Oak Park",
+                    "Forest Hill",
+                    "Sydenham",
+                    "Crystal Palace",
+                    "Crystal Palace",
+                    "Sydenham",
+                    "Forest Hill",
+                    "Honor Oak Park",
+                    "Brockley",
+                    "New Cross Gate",
+                    "Surrey Quays",
+                    "Canada Water",
+                    "Rotherhithe",
+                    "Wapping",
+                    "Shadwell",
+                    "Whitechapel",
+                    "Shoreditch High Street",
+                    "Hoxton",
+                    "Haggerston",
+                    "Dalston Junction",
+                    "Canonbury",
+                    "Highbury & Islington"
+                ],
+                [
+                    "Highbury & Islington",
+                    "Canonbury",
+                    "Dalston Junction",
+                    "Haggerston",
+                    "Hoxton",
+                    "Shoreditch High Street",
+                    "Whitechapel",
+                    "Shadwell",
+                    "Wapping",
+                    "Rotherhithe",
+                    "Canada Water",
+                    "Surrey Quays",
+                    "New Cross Gate",
+                    "Brockley",
+                    "Honor Oak Park",
+                    "Forest Hill",
+                    "Sydenham",
+                    "Penge West",
+                    "Anerley",
+                    "Norwood Junction",
+                    "West Croydon",
+                    "West Croydon",
+                    "Norwood Junction",
+                    "Anerley",
+                    "Penge West",
+                    "Sydenham",
+                    "Forest Hill",
+                    "Honor Oak Park",
+                    "Brockley",
+                    "New Cross Gate",
+                    "Surrey Quays",
+                    "Canada Water",
+                    "Rotherhithe",
+                    "Wapping",
+                    "Shadwell",
+                    "Whitechapel",
+                    "Shoreditch High Street",
+                    "Hoxton",
+                    "Haggerston",
+                    "Dalston Junction",
+                    "Canonbury",
+                    "Highbury & Islington"
+                ]
             ]
-        ]
-        },{
+        }, {
             "line": "London Overground_North London & West London lines",
             "branches": [
                 [
                     "Richmond",
-                    "Kew Gardens", 
+                    "Kew Gardens",
                     "Gunnersbury",
-                    "South Acton", 
-                    "Acton Central", 
-                    "Willesden Junction", 
-                    "Kensal Rise", 
-                    "Brondesbury Park", 
-                    "Brondesbury", 
-                    "West Hampstead", 
-                    "Finchley Road & Frognal", 
-                    "Hampstead Heath", 
-                    "Gospel Oak", 
-                    "Kentish Town West", 
-                    "Camden Road", 
-                    "Caledonian Road & Barnsbury", 
-                    "Highbury & Islington", 
-                    "Canonbury", 
-                    "Dalston Kingsland", 
-                    "Hackney Central", 
-                    "Homerton", 
+                    "South Acton",
+                    "Acton Central",
+                    "Willesden Junction",
+                    "Kensal Rise",
+                    "Brondesbury Park",
+                    "Brondesbury",
+                    "West Hampstead",
+                    "Finchley Road & Frognal",
+                    "Hampstead Heath",
+                    "Gospel Oak",
+                    "Kentish Town West",
+                    "Camden Road",
+                    "Caledonian Road & Barnsbury",
+                    "Highbury & Islington",
+                    "Canonbury",
+                    "Dalston Kingsland",
+                    "Hackney Central",
+                    "Homerton",
                     "Hackney Wick",
                     "Stratford",
                     "Stratford",
@@ -2100,25 +2115,25 @@
                 [
                     "Clapham Junction",
                     "Imperial Wharf",
-                    "West Brompton", 
-                    "Kensington (Olympia)", 
+                    "West Brompton",
+                    "Kensington (Olympia)",
                     "Shepherd's Bush",
-                    "Willesden Junction", 
-                    "Kensal Rise", 
-                    "Brondesbury Park", 
-                    "Brondesbury", 
-                    "West Hampstead", 
-                    "Finchley Road & Frognal", 
-                    "Hampstead Heath", 
-                    "Gospel Oak", 
-                    "Kentish Town West", 
-                    "Camden Road", 
-                    "Caledonian Road & Barnsbury", 
-                    "Highbury & Islington", 
-                    "Canonbury", 
-                    "Dalston Kingsland", 
-                    "Hackney Central", 
-                    "Homerton", 
+                    "Willesden Junction",
+                    "Kensal Rise",
+                    "Brondesbury Park",
+                    "Brondesbury",
+                    "West Hampstead",
+                    "Finchley Road & Frognal",
+                    "Hampstead Heath",
+                    "Gospel Oak",
+                    "Kentish Town West",
+                    "Camden Road",
+                    "Caledonian Road & Barnsbury",
+                    "Highbury & Islington",
+                    "Canonbury",
+                    "Dalston Kingsland",
+                    "Hackney Central",
+                    "Homerton",
                     "Hackney Wick",
                     "Stratford",
                     "Stratford",
@@ -2140,33 +2155,33 @@
                     "Kensal Rise",
                     "Willesden Junction",
                     "Shepherd's Bush",
-                    "Kensington (Olympia)", 
-                    "West Brompton", 
+                    "Kensington (Olympia)",
+                    "West Brompton",
                     "Imperial Wharf",
-                    "Clapham Junction"                
+                    "Clapham Junction"
                 ]
             ]
-        },{
-                "line": "London Overground_Watford DC line",
-                "branches": [
-                    [
+        }, {
+            "line": "London Overground_Watford DC line",
+            "branches": [
+                [
                     "Watford Junction",
-                    "Watford High Street", 
-                    "Bushey", 
-                    "Carpenders Park", 
-                    "Hatch End", 
-                    "Headstone Lane", 
-                    "Harrow & Wealdstone", 
-                    "Kenton", 
-                    "South Kenton", 
-                    "North Wembley", 
-                    "Wembley Central", 
-                    "Stonebridge Park", 
-                    "Harlesden", 
-                    "Willesden Junction", 
-                    "Kensal Green", 
-                    "Queens Park", 
-                    "Kilburn High Road", 
+                    "Watford High Street",
+                    "Bushey",
+                    "Carpenders Park",
+                    "Hatch End",
+                    "Headstone Lane",
+                    "Harrow & Wealdstone",
+                    "Kenton",
+                    "South Kenton",
+                    "North Wembley",
+                    "Wembley Central",
+                    "Stonebridge Park",
+                    "Harlesden",
+                    "Willesden Junction",
+                    "Kensal Green",
+                    "Queens Park",
+                    "Kilburn High Road",
                     "South Hampstead",
                     "Euston",
                     "Euston",
@@ -2189,134 +2204,136 @@
                     "Watford High Street",
                     "Watford Junction"
 
-                    ]
                 ]
-         },{
-            
-                "line": "London Overground_Gospel Oak to Barking line",
-        "branches": [
-            [
-                "Gospel Oak",
-                "Upper Holloway", 
-                "Crouch Hill", 
-                "Harringay Green Lanes", 
-                "South Tottenham", 
-                "Blackhorse Road", 
-                "Walthamstow Queen's Road", 
-                "Leyton Midland Road", 
-                "Leytonstone High Road", 
-                "Wanstead Park", 
-                "Woodgrange Park",
-                "Barking",
-                "Barking",
-                "Woodgrange Park",
-                "Wanstead Park",
-                "Leytonstone High Road",
-                "Leyton Midland Road",
-                "Walthamstow Queen's Road",
-                "Blackhorse Road",
-                "South Tottenham",
-                "Harringay Green Lanes",
-                "Crouch Hill",
-                "Upper Holloway",
-                "Gospel Oak"
-
             ]
-        ]
-        },{
-           
-               "line": "London Overground_Lea Valley lines",
-       "branches": [
-           [
-               "Liverpool Street",
-               "Bethnal Green Weavers Field", 
-               "Cambridge Heath", 
-               "London Fields", 
-               "Hackney Downs", 
-               "Rectory Road", 
-               "Stoke Newington", 
-               "Stamford Hill",
-               "Seven Sisters", 
-               "Bruce Grove", 
-               "White Hart Lane", 
-               "Silver Street", 
-               "Edmonton Green", 
-               "Bush Hill Park",
-               "Enfield Town",
-               "Enfield Town",
-               "Bush Hill Park",
-               "Edmonton Green",
-               "Silver Street",
-               "White Hart Lane",
-               "Bruce Grove",
-               "Seven Sisters",
-               "Stamford Hill",
-               "Stoke Newington",
-               "Rectory Road",
-               "Hackney Downs",
-               "London Fields",
-               "Cambridge Heath",
-               "Bethnal Green Weavers Field",
-                "Liverpool Street"
+        }, {
 
-           ],[
-                "Liverpool Street",
-                "Bethnal Green Weavers Field", 
-                "Cambridge Heath", 
-                "London Fields", 
-                "Hackney Downs", 
-                "Rectory Road", 
-                "Stoke Newington", 
-                "Stamford Hill",
-                "Seven Sisters", 
-                "Bruce Grove", 
-                "White Hart Lane", 
-                "Silver Street", 
-                "Edmonton Green", 
-                "Southbury", 
-                "Turkey Street", 
-                "Theobalds Grove",
-                "Cheshunt",
-                "Cheshunt",
-                "Theobalds Grove",
-                "Turkey Street",
-                "Southbury",
-                "Edmonton Green",
-                "Silver Street",
-                "White Hart Lane",
-                "Bruce Grove",
-                "Seven Sisters",
-                "Stamford Hill",
-                "Stoke Newington",
-                "Rectory Road",
-                "Hackney Downs",
-                "London Fields",
-                "Cambridge Heath",
-                "Bethnal Green Weavers Field",
-                "Liverpool Street"
+            "line": "London Overground_Gospel Oak to Barking line",
+            "branches": [
+                [
+                    "Gospel Oak",
+                    "Upper Holloway",
+                    "Crouch Hill",
+                    "Harringay Green Lanes",
+                    "South Tottenham",
+                    "Blackhorse Road",
+                    "Walthamstow Queen's Road",
+                    "Leyton Midland Road",
+                    "Leytonstone High Road",
+                    "Wanstead Park",
+                    "Woodgrange Park",
+                    "Barking",
+                    "Barking",
+                    "Woodgrange Park",
+                    "Wanstead Park",
+                    "Leytonstone High Road",
+                    "Leyton Midland Road",
+                    "Walthamstow Queen's Road",
+                    "Blackhorse Road",
+                    "South Tottenham",
+                    "Harringay Green Lanes",
+                    "Crouch Hill",
+                    "Upper Holloway",
+                    "Gospel Oak"
 
-           ],[
-            "Liverpool Street",
-            "Bethnal Green Weavers Field", 
-            "Hackney Downs", 
-            "Clapton", 
-            "St James Street", 
-            "Walthamstow Central", 
-            "Wood Street", 
-            "Highams Park",
-            "Chingford",
-            "Chingford",
-            "Highams Park",
-            "Wood Street",
-            "Walthamstow Central",
-            "St James Street",
-            "Clapton",
-            "Hackney Downs",
-            "Bethnal Green Weavers Field",
-            "Liverpool Street"
-           ]
-        ]
-         },{
+                ]
+            ]
+        }, {
+
+            "line": "London Overground_Lea Valley lines",
+            "branches": [
+                [
+                    "Liverpool Street",
+                    "Bethnal Green Weavers Field",
+                    "Cambridge Heath",
+                    "London Fields",
+                    "Hackney Downs",
+                    "Rectory Road",
+                    "Stoke Newington",
+                    "Stamford Hill",
+                    "Seven Sisters",
+                    "Bruce Grove",
+                    "White Hart Lane",
+                    "Silver Street",
+                    "Edmonton Green",
+                    "Bush Hill Park",
+                    "Enfield Town",
+                    "Enfield Town",
+                    "Bush Hill Park",
+                    "Edmonton Green",
+                    "Silver Street",
+                    "White Hart Lane",
+                    "Bruce Grove",
+                    "Seven Sisters",
+                    "Stamford Hill",
+                    "Stoke Newington",
+                    "Rectory Road",
+                    "Hackney Downs",
+                    "London Fields",
+                    "Cambridge Heath",
+                    "Bethnal Green Weavers Field",
+                    "Liverpool Street"
+
+                ],
+                [
+                    "Liverpool Street",
+                    "Bethnal Green Weavers Field",
+                    "Cambridge Heath",
+                    "London Fields",
+                    "Hackney Downs",
+                    "Rectory Road",
+                    "Stoke Newington",
+                    "Stamford Hill",
+                    "Seven Sisters",
+                    "Bruce Grove",
+                    "White Hart Lane",
+                    "Silver Street",
+                    "Edmonton Green",
+                    "Southbury",
+                    "Turkey Street",
+                    "Theobalds Grove",
+                    "Cheshunt",
+                    "Cheshunt",
+                    "Theobalds Grove",
+                    "Turkey Street",
+                    "Southbury",
+                    "Edmonton Green",
+                    "Silver Street",
+                    "White Hart Lane",
+                    "Bruce Grove",
+                    "Seven Sisters",
+                    "Stamford Hill",
+                    "Stoke Newington",
+                    "Rectory Road",
+                    "Hackney Downs",
+                    "London Fields",
+                    "Cambridge Heath",
+                    "Bethnal Green Weavers Field",
+                    "Liverpool Street"
+
+                ],
+                [
+                    "Liverpool Street",
+                    "Bethnal Green Weavers Field",
+                    "Hackney Downs",
+                    "Clapton",
+                    "St James Street",
+                    "Walthamstow Central",
+                    "Wood Street",
+                    "Highams Park",
+                    "Chingford",
+                    "Chingford",
+                    "Highams Park",
+                    "Wood Street",
+                    "Walthamstow Central",
+                    "St James Street",
+                    "Clapton",
+                    "Hackney Downs",
+                    "Bethnal Green Weavers Field",
+                    "Liverpool Street"
+                ]
+            ]
+        }, {
             "line": "London Overground_Romford to Upminster line",
             "branches": [
                 [
@@ -2325,30 +2342,29 @@
                     "Upminster",
                     "Upminster",
                     "Emerson Park",
-                    "Romford"    
+                    "Romford"
                 ]
             ]
 
-        }
-        ,{
+        }, {
             "line": "DLR_Bank",
             "branches": [
                 [
                     "Bank",
-                    "Shadwell", 
-                    "Limehouse", 
-                    "Westferry", 
-                    "West India Quay", 
-                    "Canary Wharf", 
-                    "Heron Quays", 
-                    "South Quay", 
-                    "Crossharbour", 
-                    "Mudchute", 
-                    "Island Gardens", 
-                    "Cutty Sark", 
-                    "Greenwich", 
-                    "Deptford Bridge", 
-                    "Elverson Road" ,
+                    "Shadwell",
+                    "Limehouse",
+                    "Westferry",
+                    "West India Quay",
+                    "Canary Wharf",
+                    "Heron Quays",
+                    "South Quay",
+                    "Crossharbour",
+                    "Mudchute",
+                    "Island Gardens",
+                    "Cutty Sark",
+                    "Greenwich",
+                    "Deptford Bridge",
+                    "Elverson Road",
                     "Lewisham",
                     "Lewisham",
                     "Elverson Road",
@@ -2366,18 +2382,19 @@
                     "Limehouse",
                     "Shadwell",
                     "Bank"
-                ],[
+                ],
+                [
                     "Bank",
                     "Shadwell",
-                    "Limehouse", 
-                    "Westferry", 
-                    "Poplar", 
-                    "Blackwall", 
-                    "East India", 
-                    "Canning Town", 
-                    "West Silvertown", 
-                    "Pontoon Dock", 
-                    "London City Airport", 
+                    "Limehouse",
+                    "Westferry",
+                    "Poplar",
+                    "Blackwall",
+                    "East India",
+                    "Canning Town",
+                    "West Silvertown",
+                    "Pontoon Dock",
+                    "London City Airport",
                     "King George V",
                     "Woolwich Arsenal",
                     "Woolwich Arsenal",
@@ -2396,24 +2413,24 @@
                 ]
             ]
 
-        },{
+        }, {
             "line": "DLR_Tower Gateway",
             "branches": [
                 [
                     "Tower Gateway",
-                    "Shadwell", 
-                    "Limehouse", 
-                    "Westferry", 
-                    "Poplar", 
-                    "Blackwall", 
-                    "East India", 
-                    "Canning Town", 
-                    "Royal Victoria", 
-                    "Custom House", 
-                    "Prince Regent", 
-                    "Royal Albert", 
-                    "Beckton Park", 
-                    "Cyprus", 
+                    "Shadwell",
+                    "Limehouse",
+                    "Westferry",
+                    "Poplar",
+                    "Blackwall",
+                    "East India",
+                    "Canning Town",
+                    "Royal Victoria",
+                    "Custom House",
+                    "Prince Regent",
+                    "Royal Albert",
+                    "Beckton Park",
+                    "Cyprus",
                     "Gallions Reach",
                     "Beckton",
                     "Beckton",
@@ -2435,27 +2452,27 @@
                 ]
             ]
 
-        },{
+        }, {
             "line": "DLR_Stratford Lewisham",
             "branches": [
                 [
                     "Stratford",
-                    "Pudding Mill Lane", 
-                    "Bow Church", 
-                    "Devons Road", 
-                    "Langdon Park", 
-                    "All Saints", 
-                    "Poplar", 
-                    "West India Quay", 
-                    "Canary Wharf", 
-                    "Heron Quays", 
-                    "South Quay", 
-                    "Crossharbour", 
-                    "Mudchute", 
-                    "Island Gardens", 
-                    "Cutty Sark", 
-                    "Greenwich", 
-                    "Deptford Bridge", 
+                    "Pudding Mill Lane",
+                    "Bow Church",
+                    "Devons Road",
+                    "Langdon Park",
+                    "All Saints",
+                    "Poplar",
+                    "West India Quay",
+                    "Canary Wharf",
+                    "Heron Quays",
+                    "South Quay",
+                    "Crossharbour",
+                    "Mudchute",
+                    "Island Gardens",
+                    "Cutty Sark",
+                    "Greenwich",
+                    "Deptford Bridge",
                     "Elverson Road",
                     "Lewisham",
                     "Lewisham",
@@ -2479,20 +2496,20 @@
                     "Stratford"
                 ]
             ]
-        },{
+        }, {
             "line": "DLR_Stratford International Woolwich Arsenal",
             "branches": [
                 [
                     "Stratford International",
-                    "Stratford", 
-                    "Stratford High Street", 
-                    "Abbey Road", 
-                    "West Ham", 
-                    "Star Lane", 
-                    "Canning Town", 
-                    "West Silvertown", 
-                    "Pontoon Dock", 
-                    "London City Airport", 
+                    "Stratford",
+                    "Stratford High Street",
+                    "Abbey Road",
+                    "West Ham",
+                    "Star Lane",
+                    "Canning Town",
+                    "West Silvertown",
+                    "Pontoon Dock",
+                    "London City Airport",
                     "King George V",
                     "King George V",
                     "London City Airport",
@@ -2507,118 +2524,120 @@
                     "Stratford International"
                 ]
             ]
-        },{
+        }, {
             "line": "Tramlink_Wimbledon",
-            "branches": [[
-                "Wimbledon",
-                "Dundonald Road",
-                "Merton Park",
-                "Morden Road",
-                "Phipps Bridge",
-                "Belgrave Walk",
-                "Mitcham",
-                "Mitcham Junction",
-                "Beddington Lane",
-                "Therapia Lane",
-                "Ampere Way",
-                "Waddon Marsh",
-                "Wandle Park",
-                "Reeves Corner",
-                "Centrale",
-                "West Croydon",
-                "Wellesley Road",
-                "East Croydon",
-                "Lebanon Road",
-                "Sandilands",
-                "Addiscombe",
-                "Blackhorse Lane",
-                "Woodside",
-                "Arena",
-                "Elmers End",
-                "Elmers End",
-                "Arena",
-                "Woodside",
-                "Blackhorse Lane",
-                "Addiscombe",
-                "Sandilands",
-                "Lebanon Road",
-                "East Croydon",
-                "George Street",
-                "Church Street",
-                "Wandle Park",
-                "Waddon Marsh",
-                "Ampere Way",
-                "Therapia Lane",
-                "Beddington Lane",
-                "Mitcham Junction",
-                "Mitcham",
-                "Belgrave Walk",
-                "Phipps Bridge",
-                "Morden Road",
-                "Merton Park",
-                "Dundonald Road",
-                "Wimbledon"
-            ],[
-                "Wimbledon",
-                "Dundonald Road",
-                "Merton Park",
-                "Morden Road",
-                "Phipps Bridge",
-                "Belgrave Walk",
-                "Mitcham",
-                "Mitcham Junction",
-                "Beddington Lane",
-                "Therapia Lane",
-                "Ampere Way",
-                "Waddon Marsh",
-                "Wandle Park",
-                "Reeves Corner",
-                "Centrale",
-                "West Croydon",
-                "Wellesley Road",
-                "East Croydon",
-                "Lebanon Road",
-                "Sandilands",
-                "Addiscombe",
-                "Blackhorse Lane",
-                "Woodside",
-                "Arena",
-                "Harrington Road",
-                "Birkbeck",
-                "Avenue Road",
-                "Beckenham Road",
-                "Beckenham Junction",
-                "Beckenham Junction",
-                "Beckenham Road",
-                "Avenue Road",
-                "Birkbeck",
-                "Harrington Road",
-                "Arena",
-                "Woodside",
-                "Blackhorse Lane",
-                "Addiscombe",
-                "Sandilands",
-                "Lebanon Road",
-                "East Croydon",
-                "George Street",
-                "Church Street",
-                "Wandle Park",
-                "Waddon Marsh",
-                "Ampere Way",
-                "Therapia Lane",
-                "Beddington Lane",
-                "Mitcham Junction",
-                "Mitcham",
-                "Belgrave Walk",
-                "Phipps Bridge",
-                "Morden Road",
-                "Merton Park",
-                "Dundonald Road",
-                "Wimbledon"
+            "branches": [
+                [
+                    "Wimbledon",
+                    "Dundonald Road",
+                    "Merton Park",
+                    "Morden Road",
+                    "Phipps Bridge",
+                    "Belgrave Walk",
+                    "Mitcham",
+                    "Mitcham Junction",
+                    "Beddington Lane",
+                    "Therapia Lane",
+                    "Ampere Way",
+                    "Waddon Marsh",
+                    "Wandle Park",
+                    "Reeves Corner",
+                    "Centrale",
+                    "West Croydon",
+                    "Wellesley Road",
+                    "East Croydon",
+                    "Lebanon Road",
+                    "Sandilands",
+                    "Addiscombe",
+                    "Blackhorse Lane",
+                    "Woodside",
+                    "Arena",
+                    "Elmers End",
+                    "Elmers End",
+                    "Arena",
+                    "Woodside",
+                    "Blackhorse Lane",
+                    "Addiscombe",
+                    "Sandilands",
+                    "Lebanon Road",
+                    "East Croydon",
+                    "George Street",
+                    "Church Street",
+                    "Wandle Park",
+                    "Waddon Marsh",
+                    "Ampere Way",
+                    "Therapia Lane",
+                    "Beddington Lane",
+                    "Mitcham Junction",
+                    "Mitcham",
+                    "Belgrave Walk",
+                    "Phipps Bridge",
+                    "Morden Road",
+                    "Merton Park",
+                    "Dundonald Road",
+                    "Wimbledon"
+                ],
+                [
+                    "Wimbledon",
+                    "Dundonald Road",
+                    "Merton Park",
+                    "Morden Road",
+                    "Phipps Bridge",
+                    "Belgrave Walk",
+                    "Mitcham",
+                    "Mitcham Junction",
+                    "Beddington Lane",
+                    "Therapia Lane",
+                    "Ampere Way",
+                    "Waddon Marsh",
+                    "Wandle Park",
+                    "Reeves Corner",
+                    "Centrale",
+                    "West Croydon",
+                    "Wellesley Road",
+                    "East Croydon",
+                    "Lebanon Road",
+                    "Sandilands",
+                    "Addiscombe",
+                    "Blackhorse Lane",
+                    "Woodside",
+                    "Arena",
+                    "Harrington Road",
+                    "Birkbeck",
+                    "Avenue Road",
+                    "Beckenham Road",
+                    "Beckenham Junction",
+                    "Beckenham Junction",
+                    "Beckenham Road",
+                    "Avenue Road",
+                    "Birkbeck",
+                    "Harrington Road",
+                    "Arena",
+                    "Woodside",
+                    "Blackhorse Lane",
+                    "Addiscombe",
+                    "Sandilands",
+                    "Lebanon Road",
+                    "East Croydon",
+                    "George Street",
+                    "Church Street",
+                    "Wandle Park",
+                    "Waddon Marsh",
+                    "Ampere Way",
+                    "Therapia Lane",
+                    "Beddington Lane",
+                    "Mitcham Junction",
+                    "Mitcham",
+                    "Belgrave Walk",
+                    "Phipps Bridge",
+                    "Morden Road",
+                    "Merton Park",
+                    "Dundonald Road",
+                    "Wimbledon"
 
+                ]
             ]
-        ]
-        },{
+        }, {
             "line": "Tramlink_New Addington Loop",
             "branches": [
                 [
@@ -2650,5 +2669,5 @@
                 ]
             ]
         }
-    ]  
+    ]
 }
