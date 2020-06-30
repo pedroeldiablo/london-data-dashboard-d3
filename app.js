@@ -100,10 +100,11 @@ d3.queue()
       dlrEntriesExits: stationUsage,
     };
   })
-  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData){
+  .defer(d3.json, './london_rail_lines.json') 
+  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData, railLinesOrderedBranches){
     if(error) throw error;
 
-    // console.log(mapData);
+    console.log({railLinesOrderedBranches});
 
     var geoData = topojson.feature(mapData, mapData.objects.wards).features;
     var stationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;

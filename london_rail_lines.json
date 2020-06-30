@@ -12,7 +12,7 @@
                         "Cricklewood",
                         "West Hamsptead Thameslink",
                         "Kentish Town",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -40,7 +40,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -68,7 +68,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -88,7 +88,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -107,7 +108,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -129,7 +130,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -151,7 +153,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -182,7 +185,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -214,7 +217,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -245,7 +249,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -277,7 +281,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -300,7 +305,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -324,7 +329,8 @@
                         "Hendon",
                         "Cricklewood",
                         "West Hamsptead Thameslink",
-                        "Kentish Town", "St Pancras",
+                        "Kentish Town",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -347,7 +353,7 @@
                         "Oakleigh Park",
                         "New Southgate",
                         "Finsbury Park",
-                        "St Pancras",
+                        "King's Cross St. Pancras",
                         "Farringdon",
                         "City Thameslink",
                         "Blackfriars",
@@ -645,10 +651,10 @@
         },
 
         {
-            "terminus": "King's Cross",
+            "terminus": "King's Cross St. Pancras",
             "branches": [
                 [
-                    "King's Cross",
+                    "King's Cross St. Pancras",
                     "Finsbury Park",
                     "Harringay",
                     "Hornsey",
@@ -661,7 +667,7 @@
                     "...Welwyn Garden City or Cambridge"
                 ],
                 [
-                    "King's Cross",
+                    "King's Cross St. Pancras",
                     "Finsbury Park",
                     "Finsbury Park",
                     "Harringay",
@@ -685,7 +691,7 @@
                     "Finsbury Park",
                     "King's Cross"
                 ],
-                ["King's Cross",
+                ["King's Cross St. Pancras",
                     "Finsbury Park",
                     "Harringay",
                     "Hornsey",
@@ -698,6 +704,10 @@
                     "Gordon Hill",
                     "Crews Hill",
                     "...Hertford North"
+                ],
+                ["King's Cross St. Pancras",
+                    "Stratford International",
+                    "Ebbsfleet"
                 ]
 
             ]
@@ -960,15 +970,6 @@
                     "West Drayton",
                     "Iver",
                     "...Windsor & Eton Central, Marlow, Henley-on-Thames, Staines, Guildford, Newbury and Didcot"
-                ]
-            ]
-        },
-        {
-            "terminus": "St Pancras",
-            "branches": [
-                ["St Pancras",
-                    "Stratford International",
-                    "Ebbsfleet"
                 ]
             ]
         },
