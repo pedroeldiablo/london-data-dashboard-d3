@@ -1,5 +1,4 @@
 d3.queue()
-  .defer(d3.json, './eastLondon.json') 
   .defer(d3.json, './tube_lines_ordered_branches.json') 
   .defer(d3.json, './uk_topo_ward.json')
   .defer(d3.json, './london_stations_topojson.json')
@@ -101,10 +100,10 @@ d3.queue()
     };
   })
   .defer(d3.json, './london_rail_lines.json') 
-  .await(function(error, eastLondon, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData, railLinesOrderedBranches){
+  .await(function(error, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData, railLinesOrderedBranches){
     if(error) throw error;
 
-    console.log({railLinesOrderedBranches});
+    console.log("railLinesOrderedBranches", railLinesOrderedBranches);
 
     var geoData = topojson.feature(mapData, mapData.objects.wards).features;
     var stationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
