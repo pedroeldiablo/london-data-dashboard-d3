@@ -103,13 +103,14 @@ d3.queue()
   .await(function(error, tubeLinesOrderedBranches, mapData, stationsData, allStationsData, wardData, stationUsageData, tubeStationUsageData, dlrStationUsageData, railLinesOrderedBranches){
     if(error) throw error;
 
-    console.log("railLinesOrderedBranches", railLinesOrderedBranches);
+    // console.log("railLinesOrderedBranches", railLinesOrderedBranches);
 
     var geoData = topojson.feature(mapData, mapData.objects.wards).features;
     var stationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
     //  var allStationsGeoData = topojson.feature(stationsData, stationsData.objects.london_stations).features;
     var allStationsGeoData = allStationsData.features;
     var tubeLineRoutes = tubeLinesOrderedBranches.london_underground;
+    var trainLineRoutes = railLinesOrderedBranches.london_rail;
 
     // console.log('allStationsGeoData',allStationsGeoData);
 
@@ -127,6 +128,10 @@ d3.queue()
         console.log('station that didn\'t match', station);
       }
     })
+
+
+
+
 
     var orderedTubeLines = [];
 
@@ -162,6 +167,66 @@ d3.queue()
         });  
       });
     });
+
+  var orderedTrainLines = [];
+
+trainLineRoutes.forEach(line => {
+
+  // console.log(`trainLine ${line.terminus}`, line);
+
+  var trainLine = line.branches;
+
+  // console.log(`trainLine ${trainLine}`);
+  trainLine.forEach(branch => {
+    var numberOfSubbranches = line.branches.length;
+    var trainLineSubBranch = line.branches.indexOf(branch);
+
+
+    // console.log(`trainLine ${line.terminus}`);
+    // console.log(`numberOfSubbranches ${numberOfSubbranches}`);
+    // console.log(`trainLineSubBranch ${trainLineSubBranch}`);
+
+    branch.forEach(station => {
+      var matchingStation = allStationsGeoData.filter(d => d.properties.name === station );
+
+      if(matchingStation.length < 1) {
+        return console.log('Unmatched station', station);
+      } else {
+
+      station = {station};
+
+      station.properties = { ...station, ...matchingStation[0].geometry.coordinates };
+      var coordinates = matchingStation[0].geometry.coordinates;
+
+      if(orderedTrainLines[`${line.terminus}-${numberOfSubbranches}-${trainLineSubBranch}`]){
+        orderedTrainLines[`${line.terminus}-${numberOfSubbranches}-${trainLineSubBranch}`][0]['geometry']['coordinates'][0].push(coordinates);
+      } else {
+        orderedTrainLines[`${line.terminus}-${numberOfSubbranches}-${trainLineSubBranch}`] = [];
+        orderedTrainLines[`${line.terminus}-${numberOfSubbranches}-${trainLineSubBranch}`].push({'geometry': {'coordinates': [[coordinates]], type: 'MultiLineString'}, type: 'Feature', id: `${line.terminus}-${numberOfSubbranches}-${trainLineSubBranch}` });
+      }
+      matchingStation.forEach(station => {
+        matchingStation[0].properties = { ...matchingStation[0].properties, stationOrder:{trainLineSubBranch} };
+        
+      });
+    }
+    });  
+  });
+});
+
+
+console.log("orderedTrainLines", orderedTrainLines);
+
+
+
+
+
+
+
+
+
+
+
+
 
     wardData.forEach(row => {
       var countries = geoData.filter(d => d.id === row.newCode);
@@ -267,7 +332,7 @@ d3.queue()
       rankedStationArray.push(`${rankedStation[0].properties.name} ${station}`);
     });
 
-    console.log(rankedStationArray);
+    // console.log(rankedStationArray);
 
 
     var combinedLondon =rankedStationArray.reduce(sumArray);
@@ -276,7 +341,7 @@ d3.queue()
       return total + num;
     } 
 
-    console.log('combinedLondon', combinedLondon);
+    // console.log('combinedLondon', combinedLondon);
 
     var tubeLines = [];
 
@@ -354,9 +419,10 @@ d3.queue()
       .on('mouseout', hideToolTip2)
       .on('touchEnd', hideToolTip2);
 
-    var lineRoutes = Object.keys(trainRoute);
-    var tubeRoutes = Object.keys(tubeLines);
+    // var lineRoutes = Object.keys(trainRoute);
+    // var tubeRoutes = Object.keys(tubeLines);
     var orderedTubeRoutes = Object.keys(orderedTubeLines); 
+    var orderedTrainRoutes = Object.keys(orderedTrainLines); 
 
     function makeLine(linesGeoData) {
       var width = 3200;
@@ -431,6 +497,82 @@ d3.queue()
         });
     }
 
+    function makeSingleLine(linesGeoData) {
+      console.log("linesGeoData", linesGeoData)
+      var width = 3200;
+      var height = 2400;
+
+      var projection = d3.geoMercator()
+        .center([0.3848, 51.5074])
+        .scale(180000)
+        .translate([width, height/2]);
+
+      var path = d3.geoPath()
+        .projection(projection);
+        
+      var id = linesGeoData[0].id.replace(/[/ !@#$%^&*()\.\']/g, '');
+
+      // console.log(id);
+
+      // return (
+      d3.select('#map')
+        .attr('width', width)
+        .attr('height', height)
+        .selectAll(`.${id}`)
+        .data(linesGeoData)
+        .enter()
+        .append('path')
+        .classed('line', true)
+        .classed(id, true)
+        .attr('d', path)
+        // .on('mousemove', showToolTip)
+        // .on('touchStart', showToolTip)
+        // .on('mouseout', hideToolTip)
+        // .on('touchEnd', hideToolTip)
+        .attr('opacity', d => {
+          var tubeLines = d.id;
+          var noBranches = tubeLines.split('-')[1];
+          noBranches = parseFloat(noBranches);
+          // console.log('noBranches', id, noBranches);
+          // console.log('opacity', id, 1 / noBranches );
+          return 1 / noBranches;
+
+        })
+        .attr("stroke-dasharray", function(d) { return (d + 1) + ",5"; })
+        .attr('stroke', d => {
+          var color;
+          var lineColors = {
+            'Bakerloo': '#B36305', 	
+            'Central': '#E32017',	
+            'Circle': '#FFD300',
+            'District': '#00782A',	
+            'Hammersmith & City': '#F3A9BB',	
+            'Jubilee': '#A0A5A9',	
+            'Metropolitan': '#9B0056',	
+            'Northern': '#000000',
+            'Piccadilly': '#003688',	
+            'Victoria': '#0098D4',	
+            'Waterloo': '#95CDBA',
+            'DLR': '#00A4A7',	
+            'London Overground': '#EE7C0E',
+            'Tramlink': '#84B817',	
+            'Emirates Air Line': '#E21836',	
+            'Crossrail': '#7156A5',
+            'TfL Rail': '#0019a8',
+            'East London': 'orange',
+            undefined: 'white'
+          };
+          var tubeLines = d.id;
+          // console.log('d.id', tubeLines);
+          tubeLines = tubeLines.split('-')[0];
+          tubeLines = tubeLines.split('_')[0];
+          // console.log('Overground? ', tubeLines);
+          return lineColors[tubeLines] ? color = lineColors[tubeLines] : color = 'white';
+        
+        });
+    }
+
+
     orderedTubeRoutes.forEach(line => {
       if (line === 'undefined' || orderedTubeLines[line][0].geometry.coordinates[0].length < 2) {
         return console.log('unknownline');
@@ -440,6 +582,19 @@ d3.queue()
         // console.log('linesGeoData', linesGeoData);
 
         makeLine(linesGeoData);
+      }
+      
+    });
+
+    orderedTrainRoutes.forEach(line => {
+      if (line === 'undefined' || orderedTrainLines[line][0].geometry.coordinates[0].length < 2) {
+        return console.log('unknownline');
+      } else {
+        console.log('current', orderedTrainLines[line]);
+        var linesGeoData = orderedTrainLines[line];
+        // console.log('linesGeoData', linesGeoData);
+
+        makeSingleLine(linesGeoData);
       }
       
     });
@@ -640,7 +795,7 @@ var tooltip = d3.select('body')
   .classed('tooltip', true);
 
 function showToolTip2(d) {
-  console.log(d);
+  // console.log(d);
   var properties = d.properties;
   tooltip
     .style('opacity', 1)

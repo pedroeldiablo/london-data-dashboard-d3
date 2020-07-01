@@ -464,10 +464,10 @@
             ]
         },
         {
-            "terminus": "Charring Cross",
+            "terminus": "Charing Cross",
             "branches": [
                 [
-                    "Charring Cross",
+                    "Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "Deptford",
@@ -488,7 +488,7 @@
 
                 ],
                 [
-                    "Charring Cross",
+                    "Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -507,7 +507,7 @@
                     "Stone Crossing",
                     "...Rainham"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -524,7 +524,7 @@
                     "Stone Crossing",
                     "...Rainham"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -542,7 +542,7 @@
                     "Stone Crossing",
                     "...Rainham"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -557,7 +557,7 @@
                     "Sevenoaks",
                     "...Tunbridge Wells or Hastings"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -568,7 +568,7 @@
                     "Sundridge Park",
                     "Bromley North"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -586,7 +586,7 @@
                     "Swanley",
                     "...Sevenoaks"
                 ],
-                ["Charring Cross",
+                ["Charing Cross",
                     "Waterloo East",
                     "London Bridge",
                     "New Cross",
@@ -830,7 +830,7 @@
                     "Streatham",
                     "Streatham Common",
                     "Norbury",
-                    "Thornton Health",
+                    "Thornton Heath",
                     "Selhurst",
                     "East Croydon",
                     "South Croydon",
@@ -849,7 +849,7 @@
                     "Streatham",
                     "Streatham Common",
                     "Norbury",
-                    "Thornton Health",
+                    "Thornton Heath",
                     "Selhurst",
                     "West Croydon",
                     "Waddon",
@@ -871,7 +871,7 @@
                     "Streatham",
                     "Streatham Common",
                     "Norbury",
-                    "Thornton Health",
+                    "Thornton Heath",
                     "Selhurst",
                     "West Croydon",
                     "Waddon",
@@ -977,6 +977,7 @@
             "terminus": "Victoria",
             "branches": [
                 [
+                    "Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -989,13 +990,14 @@
                     "Beckenham Junction"
                 ],
                 [
+                    "Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
                     "Balham",
                     "Streatham Common",
                     "Norbury",
-                    "Thornton Health",
+                    "Thornton Heath",
                     "Selhurst",
                     "East Croydon",
                     "South Croydon",
@@ -1005,6 +1007,7 @@
                     "...Uckfield"
                 ],
                 [
+                    "Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -1020,6 +1023,7 @@
                     "...Horsham"
                 ],
                 [
+                    "Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -1034,7 +1038,7 @@
                     "Epsom",
                     "...Guildford"
                 ],
-                [
+                ["Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -1048,7 +1052,7 @@
                     "Banstead",
                     "Epsom Downs"
                 ],
-                [
+                ["Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -1061,7 +1065,7 @@
                     "Cheam",
                     "Ewell East"
                 ],
-                [
+                ["Victoria",
                     "Battersea Park",
                     "Clapham Junction",
                     "Wandsworth Common",
@@ -1074,7 +1078,8 @@
                     "Cheam",
                     "Ewell East"
                 ],
-                ["Shortlands",
+                ["Victoria",
+                    "Shortlands",
                     "Bromley South",
                     "Bickley",
                     "St Mary Cray",
@@ -1180,7 +1185,7 @@
                     "Teddington",
                     "Strawberry Hill",
                     "Twickenham",
-                    "St Margarets",
+                    "St. Margaret's",
                     "Richmond",
                     "North Sheen",
                     "Mortlake",
@@ -1202,7 +1207,7 @@
                     "Mortlake",
                     "North Sheen",
                     "Richmond",
-                    "St Margarets",
+                    "St. Margaret's",
                     "Twickenham",
                     "Strawberry Hill",
                     "Teddington",
@@ -1228,7 +1233,7 @@
                     "Mortlake",
                     "North Sheen",
                     "Richmond",
-                    "St Margarets",
+                    "St. Margaret's",
                     "Twickenham",
                     "Whitton",
                     "Feltham",
@@ -1244,7 +1249,7 @@
                     "Mortlake",
                     "North Sheen",
                     "Richmond",
-                    "St Margarets",
+                    "St. Margaret's",
                     "Twickenham",
                     "Whitton",
                     "Hounslow",
@@ -1278,7 +1283,7 @@
                     "Hounslow",
                     "Whitton",
                     "Twickenham",
-                    "St Margarets",
+                    "St. Margaret's",
                     "Richmond",
                     "North Sheen",
                     "Mortlake",
@@ -1313,19 +1318,21 @@
         {
             "terminus": "East Croydon",
             "branches": [
-                "East Croydon",
-                "Selhurst",
-                "Thornton Heath",
-                "Norbury",
-                "Streatham Common",
-                "Balham",
-                "Clapham Junction",
-                "Imperial Wharf",
-                "West Brompton",
-                "Kensington (Olympia)",
-                "Shepherds Bush",
-                "Harrow & Wealdstone",
-                "Watford Junction"
+                [
+                    "East Croydon",
+                    "Selhurst",
+                    "Thornton Heath",
+                    "Norbury",
+                    "Streatham Common",
+                    "Balham",
+                    "Clapham Junction",
+                    "Imperial Wharf",
+                    "West Brompton",
+                    "Kensington (Olympia)",
+                    "Shepherds Bush",
+                    "Harrow & Wealdstone",
+                    "Watford Junction"
+                ]
             ]
         }
     ],
