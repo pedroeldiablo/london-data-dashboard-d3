@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>London Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <svg 
-  varsion="1.1"
-  baseProfile="full"
-  xmins="http://www.w3.org/2000/svg"
-  id="map">
+  <svg varsion="1.1" baseProfile="full" xmins="http://www.w3.org/2000/svg" id="map">
   </svg>
   <div class="selectors">
-  <select class="select-css" id='trainDataSelect'>
-    <option value="entriesExits">entriesExits</option>
-    <option value="tubeEntriesExits">tubeEntriesExits</option>
-    <option value="interChanges">interChanges</option>
-    <option value="allRailJourneys"> allRailJourneys</option>
-    <option value="rank">rank</option>
-    <option value="journeyRank">journeyRank</option>
-  </select>
-<select class="select-css" id='wardDataSelect'>
-  <option value="openSpace">openSpace</option>
-  <option value="population">Population</option>
-  <option value="density">Population Density</option>
-  <option value="trueDensity">trueDensity</option>
-  <option value="hiddenDensity">hiddenDensity</option>
-  <option value="jobs">jobs</option>
-  <option value="jobsDensity"> jobsDensity</option>
-  <option value="netEmployment">Net Employment</option>
-  <option value="publicTransport">Public Transport</option>
-  <option value="transportPopulationRating">transportPopulationRating</option>
-  <option value="transportDensityRating">transportDensityRating</option>
-  <option value="transportJobs">transportJobs</option>
-  <option value="transportInvestmentImpact">transportInvestmentImpact</option>
-</select>
-</div>
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://unpkg.com/topojson@3"></script>
-<script src="app.js"></script>
+    <select class="select-css" id='trainDataSelect'>
+      <option value="allRailJourneys">All Rail Journeys</option>
+      <option value="entriesExits">Rail Entries/Exits</option>
+      <option value="tubeEntriesExits">Tube Entries/Exits</option>
+      <option value="interChanges">Rail Interchanges</option>
+      <option value="rank">National Rail Rank</option>
+      <option value="journeyRank">National All Rail Journey Rank</option>
+    </select>
+    <select class="select-css" id='wardDataSelect'>
+      <option value="openSpace">Open Space</option>
+      <option value="population">Population</option>
+      <option value="density">Population Density</option>
+      <option value="trueDensity">TrueDensity</option>
+      <option value="hiddenDensity">HiddenDensity</option>
+      <option value="jobs">Jobs</option>
+      <option value="jobsDensity">Jobs Density</option>
+      <option value="netEmployment">Net Employment</option>
+      <option value="publicTransport">Public Transport</option>
+      <option value="transportPopulationRating">Transport/Population Rating</option>
+      <option value="transportDensityRating">Transport Density Rating</option>
+      <option value="transportJobs">Transport Jobs</option>
+      <option value="transportInvestmentImpact">Transport Investment Impact</option>
+    </select>
+  </div>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>

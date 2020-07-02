@@ -112,7 +112,7 @@ d3.queue()
     var tubeLineRoutes = tubeLinesOrderedBranches.london_underground;
     var trainLineRoutes = railLinesOrderedBranches.london_rail;
 
-    // console.log('allStationsGeoData',allStationsGeoData);
+    console.log('allStationsGeoData',allStationsGeoData);
 
     // console.log('tubeLineRoutes', tubeLineRoutes);
 
@@ -214,7 +214,7 @@ trainLineRoutes.forEach(line => {
 });
 
 
-console.log("orderedTrainLines", orderedTrainLines);
+// console.log("orderedTrainLines", orderedTrainLines);
 
 
 
@@ -272,7 +272,7 @@ console.log("orderedTrainLines", orderedTrainLines);
         stations.properties = { ...stations.properties, ...row};
 
       }else {
-        console.log('doesr\t exist', row);
+        console.log('doesn\'t exist', row);
       }
      
     });
@@ -309,7 +309,7 @@ console.log("orderedTrainLines", orderedTrainLines);
 
     stationOrder.sort(function(a, b){return b - a});
 
-    console.log(stationOrder);
+    // console.log(stationOrder);
 
     allStationsGeoData.forEach(station => {
       var passengers = station.properties.allRailJourneys;
@@ -320,9 +320,9 @@ console.log("orderedTrainLines", orderedTrainLines);
     var totalUsage = (stationOrder.reduce(sumArray));
     var medianUsage = stationOrder[(stationOrder.length /2)];
 
-    console.log(totalUsage);
-    console.log(meanUsage);
-    console.log(medianUsage);
+    // console.log(totalUsage);
+    // console.log(meanUsage);
+    // console.log(medianUsage);
 
     var rankedStationArray = [];
 
@@ -357,7 +357,7 @@ console.log("orderedTrainLines", orderedTrainLines);
 
         } else {
           tubeLines[`${lineName}`] = [];
-          tubeLines[`${lineName}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: lineName });
+          tubeLines[`${lineName}`].push({'geometry': {'coordinates': [[coordinates]], type: 'circle'}, type: 'Feature', id: lineName });
         }
       });
     });
@@ -380,7 +380,7 @@ console.log("orderedTrainLines", orderedTrainLines);
 
       } else {
         trainRoute[`${lines}`] = [];
-        trainRoute[`${lines}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Polygon'}, type: 'Feature', id: lines });
+        trainRoute[`${lines}`].push({'geometry': {'coordinates': [[coordinates]], type: 'Circle'}, type: 'Feature', id: lines });
       }
 
       
@@ -498,7 +498,7 @@ console.log("orderedTrainLines", orderedTrainLines);
     }
 
     function makeSingleLine(linesGeoData) {
-      console.log("linesGeoData", linesGeoData)
+      // console.log("linesGeoData", linesGeoData)
       var width = 3200;
       var height = 2400;
 
@@ -542,20 +542,22 @@ console.log("orderedTrainLines", orderedTrainLines);
         .attr('stroke', d => {
           var color;
           var lineColors = {
-            'Bakerloo': '#B36305', 	
-            'Central': '#E32017',	
-            'Circle': '#FFD300',
-            'District': '#00782A',	
-            'Hammersmith & City': '#F3A9BB',	
-            'Jubilee': '#A0A5A9',	
-            'Metropolitan': '#9B0056',	
-            'Northern': '#000000',
-            'Piccadilly': '#003688',	
+            'Paddington': '#B36305', 	
+            'Liverpool Street': '#E32017',	
+            'Euston': '#FFD300',
+            'Paddington': '#00782A',	
+            'Hammersmith & City': '#F3A9BB',
+            'Cannon Street': '#A0A5A9',		
+            'London Bridge': '#A0A5A9',
+            'Charing Cross': '#A0A5A9',		
+            'Marylebone': '#9B0056',	
+            'Moorgate': '#000000',
+            'King\'s Cross St. Pancras' :'#003688',
             'Victoria': '#0098D4',	
             'Waterloo': '#95CDBA',
-            'DLR': '#00A4A7',	
+            'Fenchurch Street': '#00A4A7',	
             'London Overground': '#EE7C0E',
-            'Tramlink': '#84B817',	
+            'East Croydon': '#84B817',	
             'Emirates Air Line': '#E21836',	
             'Crossrail': '#7156A5',
             'TfL Rail': '#0019a8',
@@ -590,7 +592,7 @@ console.log("orderedTrainLines", orderedTrainLines);
       if (line === 'undefined' || orderedTrainLines[line][0].geometry.coordinates[0].length < 2) {
         return console.log('unknownline');
       } else {
-        console.log('current', orderedTrainLines[line]);
+        // console.log('current', orderedTrainLines[line]);
         var linesGeoData = orderedTrainLines[line];
         // console.log('linesGeoData', linesGeoData);
 
@@ -605,10 +607,18 @@ console.log("orderedTrainLines", orderedTrainLines);
     .selectAll('.station')
     .data(allStationsGeoData)
     .enter()
-    .append('path')
+    .append('circle')
     .classed('station', true)
-    .attr('d', path2)
-    .attr('r', '15')
+    // .attr('cx', path2[0])
+    // .attr('cy', path2[1])
+    .attr("cx", function (d) { return projection(d.geometry.coordinates)[0]; })
+		.attr("cy", function (d) { return projection(d.geometry.coordinates)[1]; })
+    // .attr('cx', path2)
+    // .attr('cy', path2)
+    .attr('whatX', typeof(path2))
+
+    // .attr('whatY', path2.split(',')[1])
+    .attr('r', '25')
     // .style('fill', 'lavenderblush')
     .on('mousemove', showToolTip)
     .on('touchStart', showToolTip)
@@ -667,39 +677,6 @@ console.log("orderedTrainLines", orderedTrainLines);
         return color;
       });
 
-    // d3.selectAll('.line')
-    //   .transition()
-    //   .duration(750)
-    //   .ease(d3.easeBackIn)
-    //   .attr('stroke', d => {
-    //     var color;
-    //     var lineColors = {
-    //       'Bakerloo': '#B36305', 	
-    //       'Central': '#E32017',	
-    //       'Circle': '#FFD300',
-    //       'District': '#00782A',	
-    //       'Hammersmith & City': '#F3A9BB',	
-    //       'Jubilee': '#A0A5A9',	
-    //       'Metropolitan': '#9B0056',	
-    //       'Northern': '#000000',
-    //       'Piccadilly': '#003688',	
-    //       'Victoria': '#0098D4',	
-    //       'Waterloo & City': '#95CDBA',
-    //       'DLR': '#00A4A7',	
-    //       'London Overground': '#EE7C0E',
-    //       'Tramlink': '#84B817',	
-    //       'Emirates Air Line': '#E21836',	
-    //       'Crossrail': '#7156A5',
-    //       'TfL Rail': '#0019a8',
-    //       'East London': 'orange'
-    //     };
-    //     var tubeLines = d.id;
-    //     tubeLines.forEach(line => {
-    //     // console.log('line', line.name, lineColors[line.name]);
-    //       return color = lineColors[line.name];
-    //     });
-    //     return color;
-    //   });
 
     var select = d3.select('#wardDataSelect');
 
@@ -746,12 +723,14 @@ console.log("orderedTrainLines", orderedTrainLines);
 
     select2
       .on('change', d => {
-        console.log(d3.event.target.value);
+        console.log("d3.event.target.value", d3.event.target.value);
+        setRadius(d3.event.target.value);
         setColor2(d3.event.target.value);
       }
       );
 
     setColor2(select2.property('value'));
+    setRadius(select2.property('value'));
 
 
     function setColor2(val) {
@@ -762,13 +741,12 @@ console.log("orderedTrainLines", orderedTrainLines);
         allRailJourneys: ['orange', 'purple'],
         rank: ['orange', 'purple'],
         journeyRank: ['green', 'orange']
-
-
       };
 
-      var scale = d3.scaleLinear()
+      var scale = d3.scaleSequential()
         .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
-        .range(colorRanges[val]);
+        .interpolator(d3.interpolateWarm);
+        // .range(colorRanges[val]);
         
       
       d3.selectAll('.station')
@@ -781,14 +759,47 @@ console.log("orderedTrainLines", orderedTrainLines);
         });  
     }
 
+
+    function setRadius(val) {
+
+      console.log("This is the updated value", val);
+
+      var scale = d3.scaleLinear()
+        .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
+        .range([1, 20]);
+
+        console.log("What is returned from scale", scale);
+
+        console.log("This is the minimum", d3.min(allStationsGeoData, d => d.properties[val]));
+        console.log("This is the maximum", d3.max(allStationsGeoData, d => d.properties[val]));
+        console.log("What is returned from CJ 29604407", scale(29604407));
+        
+      
+      d3.selectAll('.station')
+        .transition()
+        .duration(750)
+        .ease(d3.easeBackIn)
+        .attr('r', d => {
+          console.log("What is returning as d", d);
+          var data = d.properties[val];
+          if( data === NaN || data === undefined ) {
+            data = 0;
+          }
+          if(val === "rank" || val === "journeyRank" ) {
+
+            //  data = d3.max(allStationsGeoData, d => d.properties[val]) - data;
+            console.log("What is the data and val", data, val);
+          console.log("What is the scale(data)", scale(data));
+            return data ? scale(d3.max(allStationsGeoData, d => d.properties[val]) - data) : 0;
+
+          }
+          console.log("What is the data", data);
+          console.log("What is the scale(data)", scale(data));
+          return data ? scale(data) : 0;
+        });  
+    }
+
   });
-
-
-// Crossrail: (41) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// East London: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// Emirates Air Line: (2) [{…}, {…}]
-// TfL Rail: (14) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-
 
 var tooltip = d3.select('body')
   .append('div')
@@ -828,7 +839,7 @@ function hideToolTip2() {
 }
 
 function showToolTip(d) {
-  console.log(d);
+  // console.log(d);
   var properties = d.properties;
   tooltip
     .style('opacity', 1)
