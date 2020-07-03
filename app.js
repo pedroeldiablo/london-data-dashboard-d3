@@ -703,9 +703,14 @@ trainLineRoutes.forEach(line => {
         hiddenDensity: ['pink', 'mediumseagreen']
       };
 
-      var scale = d3.scaleLinear()
-        .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
-        .range(colorRanges[val]);
+      // var scale = d3.scaleLinear()
+      //   .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
+      //   .range(colorRanges[val]);
+
+
+      var scale = d3.scaleSequential()
+      .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
+        .interpolator(d3.interpolateWarm);
       
       d3.selectAll('.country')
         .transition()
