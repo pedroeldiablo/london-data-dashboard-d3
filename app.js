@@ -7,6 +7,7 @@ d3.queue()
     var area = row['Area - Square Kilometres'];
     var population = parseFloat(row['Population - 2015'].replace(/,/g, ''));
     var openSpace = parseFloat(row['% area that is open space - 2014']);
+    var openSpaceEach = ((parseFloat(row['% area that is open space - 2014']) * area) / population * 100000).toFixed(2);
     var density = parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, ''));
     var jobs = parseFloat(row['Number of jobs in area - 2013'].replace(/,/g, ''));
     var availableArea = (area * (100 - openSpace))/ 100;
@@ -22,6 +23,7 @@ d3.queue()
       population: population,
       area: row['Area - Square Kilometres'],
       openSpace: openSpace,
+      openSpaceEach: openSpaceEach,
       density: density,
       availableArea: availableArea,
       trueDensity: trueDensity,
@@ -408,6 +410,7 @@ trainLineRoutes.forEach(line => {
     d3.select('#map')
       .attr('width', width)
       .attr('height', height)
+      .attr('opacity', 0.8)
       .selectAll('.country')
       .data(geoData)
       .enter()
@@ -690,7 +693,8 @@ trainLineRoutes.forEach(line => {
       var colorRanges = {
         population: ['deeppink', 'white'],
         density: ['pink', 'mediumseagreen'],
-        openSpace: ['pink', 'mediumseagreen'],
+        openSpace: ['orange', 'purple'],
+        openSpaceEach: ['orange', 'purple'],
         trueDensity: ['pink', 'mediumseagreen'],
         jobs: ['pink', 'mediumseagreen'],
         netEmployment: ['pink', 'mediumseagreen'],
@@ -710,7 +714,9 @@ trainLineRoutes.forEach(line => {
 
       var scale = d3.scaleSequential()
       .domain([d3.min(wardData, d => d[val]), d3.max(wardData, d => d[val])])
-        .interpolator(d3.interpolateWarm);
+      // .interpolator(d3.interpolateGnBu);
+      .interpolator(d3.interpolate("#b19cd9", "peachpuff"));
+        // .interpolator(d3.interpolateWarm);
       
       d3.selectAll('.country')
         .transition()
@@ -823,6 +829,7 @@ function showToolTip2(d) {
         <p>Population: ${properties.population}</p>
         <p>Area: ${properties.area} km2</p>
         <p>Open Space: ${properties.openSpace}%</p>
+        <p>Open Space Each: ${properties.openSpaceEach} m2</p>
         <p>density: ${properties.density}</p>
         <p>hiddenDensity: ${properties.hiddenDensity}</p>
         <p>openSpace: ${properties.openSpace}</p>
