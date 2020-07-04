@@ -7,7 +7,7 @@ d3.queue()
     var area = row['Area - Square Kilometres'];
     var population = parseFloat(row['Population - 2015'].replace(/,/g, ''));
     var openSpace = parseFloat(row['% area that is open space - 2014']);
-    var openSpaceEach = ((parseFloat(row['% area that is open space - 2014']) * area) / population * 100000).toFixed(2);
+    var openSpaceEach = ((parseFloat(row['% area that is open space - 2014']) * area * 10000) / population).toFixed(2);
     var density = parseFloat(row['Population density (persons per sq km) - 2013'].replace(/,/g, ''));
     var jobs = parseFloat(row['Number of jobs in area - 2013'].replace(/,/g, ''));
     var availableArea = (area * (100 - openSpace))/ 100;
