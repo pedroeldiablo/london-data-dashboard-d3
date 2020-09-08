@@ -681,12 +681,12 @@ trainLineRoutes.forEach(line => {
       });
 
 
-    var select = d3.select('#wardDataSelect');
+    var selectWard = d3.select('#wardDataSelect');
 
-    select
+    selectWard
       .on('change', d => setColor(d3.event.target.value));
 
-    setColor(select.property('value'));
+    setColor(selectWard.property('value'));
 
 
     function setColor(val) {
@@ -730,23 +730,20 @@ trainLineRoutes.forEach(line => {
  
 
 
-    var select2 = d3.select('#trainDataSelect');
+    var selectRailInformation = d3.select('#trainDataSelect');
 
-    select2
+    selectRailInformation
       .on('change', d => {
-        console.log("d3.event.target.value", d3.event.target.value);
-        setRadius(d3.event.target.value);
-        setColor2(d3.event.target.value);
-      }
-      );
+        // console.log("d3.event.target.value", d3.event.target.value);
+        setStationMarker(d3.event.target.value);
+      });
 
-    setColor2(select2.property('value'));
-    setRadius(select2.property('value'));
+    setStationMarker(selectRailInformation.property('value'));
 
-
-    function setColor2(val) {
-      var colorRanges = {
+    function setStationMarker(val) {
+      const colorRanges = {
         entriesExits: ['orange', 'purple'],
+        dlrEntriesExits: ['orange', 'purple'],
         tubeEntriesExits: ['orange', 'purple'],
         interChanges: ['orange', 'purple'],
         allRailJourneys: ['orange', 'purple'],
@@ -754,10 +751,21 @@ trainLineRoutes.forEach(line => {
         journeyRank: ['green', 'orange']
       };
 
-      var scale = d3.scaleSequential()
+      var scaleColor = d3.scaleSequential()
         .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
         .interpolator(d3.interpolateWarm);
-        // .range(colorRanges[val]);
+
+      // console.log("This is the updated value", val);
+
+      var scaleRadius = d3.scaleLinear()
+        .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
+        .range([1, 20]);
+
+        // console.log("What is returned from scale", scaleRadius);
+
+        // console.log("This is the minimum", d3.min(allStationsGeoData, d => d.properties[val]));
+        // console.log("This is the maximum", d3.max(allStationsGeoData, d => d.properties[val]));
+        // console.log("What is returned from CJ 29604407", scaleRadius(29604407));
         
       
       d3.selectAll('.station')
@@ -766,32 +774,10 @@ trainLineRoutes.forEach(line => {
         .ease(d3.easeBackIn)
         .attr('fill', d => {
           var data = d.properties[val];
-          return data ? scale(data) : '#fff';
-        });  
-    }
-
-
-    function setRadius(val) {
-
-      console.log("This is the updated value", val);
-
-      var scale = d3.scaleLinear()
-        .domain([d3.min(allStationsGeoData, d => d.properties[val]), d3.max(allStationsGeoData, d => d.properties[val])])
-        .range([1, 20]);
-
-        console.log("What is returned from scale", scale);
-
-        console.log("This is the minimum", d3.min(allStationsGeoData, d => d.properties[val]));
-        console.log("This is the maximum", d3.max(allStationsGeoData, d => d.properties[val]));
-        console.log("What is returned from CJ 29604407", scale(29604407));
-        
-      
-      d3.selectAll('.station')
-        .transition()
-        .duration(750)
-        .ease(d3.easeBackIn)
+          return data ? scaleColor(data) : '#fff';
+        }) 
         .attr('r', d => {
-          console.log("What is returning as d", d);
+          // console.log("What is returning as d", d);
           var data = d.properties[val];
           if( data === NaN || data === undefined ) {
             data = 0;
@@ -799,18 +785,20 @@ trainLineRoutes.forEach(line => {
           if(val === "rank" || val === "journeyRank" ) {
 
             //  data = d3.max(allStationsGeoData, d => d.properties[val]) - data;
-            console.log("What is the data and val", data, val);
-          console.log("What is the scale(data)", scale(data));
-            return data ? scale(d3.max(allStationsGeoData, d => d.properties[val]) - data) : 0;
+          //   console.log("What is the data and val", data, val);
+          // console.log("What is the scale(data)", scaleRadius(data));
+            return data ? scaleRadius(d3.max(allStationsGeoData, d => d.properties[val]) - data) : 0;
 
           }
-          console.log("What is the data", data);
-          console.log("What is the scale(data)", scale(data));
-          return data ? scale(data) : 0;
+          // console.log("What is the data", data);
+          // console.log("What is the scale(data)", scaleRadius(data));
+          return data ? scaleRadius(data) : 0;
         });  
     }
 
   });
+
+
 
 var tooltip = d3.select('body')
   .append('div')
@@ -861,17 +849,17 @@ function showToolTip(d) {
     .html(`
     <p>Name: ${properties.name}</p>
     <p>All Rail Journeys: ${((+properties.railEntriesExits ? +properties.railEntriesExits: 0) + (properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0) + (properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0 ) + (properties.interChanges ? +properties.interChanges : 0)).toLocaleString()}</p>
-    <p>Rail: ${(properties.railEntriesExits ? +properties.railEntriesExits : 0).toLocaleString()}</p>
+    <p>Heavy Rail: ${(properties.railEntriesExits ? +properties.railEntriesExits : 0).toLocaleString()}</p>
     <P>All As One: ${(properties.allRailJourneys).toLocaleString()}</p>
-    <p>Tube:  ${(properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0).toLocaleString()}</p>
+    <p>Underground:  ${(properties.tubeEntriesExits ? +properties.tubeEntriesExits : 0).toLocaleString()}</p>
     <p>DLR: ${(properties.dlrEntriesExits ? +properties.dlrEntriesExits : 0).toLocaleString()} </p>
-    <p>interChanges: ${(properties.interChanges ? +properties.interChanges : 0).toLocaleString()}</p>
+    <p>InterChanges: ${(properties.interChanges ? +properties.interChanges : 0).toLocaleString()}</p>
     <p>All Journeys Rank: ${properties.journeyRank}</p>
-    <p>rank: ${properties.rank}</p>
+    <p>Rank (1718 Entries & Exits - GB rank): ${properties.rank}</p>
     <p>NLC: ${properties.NLC}</p>
-    <p>route: ${properties.route}</p>
+    <p>Route: ${properties.route}</p>
     <p>srsCode: ${properties.srsCode}</p>
-    <p>routeDescription: ${properties.routeDescription}</p>
+    <p>Route Description: ${properties.routeDescription}</p>
       `);  
 }
   
